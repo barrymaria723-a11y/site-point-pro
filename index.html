@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>POINT PRO GUINÉE — On construit vos ambitions</title>
+<meta name="description" content="POINT PRO GUINÉE : location d’engins, transport, briqueterie et matériaux de construction à Conakry, Mamou et Kindia.">
+<meta property="og:title" content="POINT PRO GUINÉE — On construit vos ambitions">
+<meta property="og:description" content="Location d’engins, transport, briqueterie et matériaux de construction à Conakry, Mamou et Kindia.">
+<meta property="og:image" content="https://site-point-pro.vercel.app/images/logo-rond.jpg">
+<link rel="icon" type="image/png" href="images/logo-embleme.png">
+<link rel="apple-touch-icon" href="images/logo-embleme.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#13295C;--navy2:#1F3A78;--navy3:#1F3A78;--gold:#E8892B;--gold-ink:#A3500E;--cream:#F2F3F5;--ink:#172334;--muted:#5d6a7b;--line:#e6e7e8;--radius:18px;--shadow:0 18px 50px #0b1b2b18}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:#fff}
+h1,h2,h3,.brand{font-family:Manrope,Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* Barre du haut et navigation */
+.topbar{background:#0B1838;color:#d9e0e7;font-size:12px;padding:10px max(5.5%,env(safe-area-inset-left,0px));display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.topbar a{color:#F2A65A}
+.nav{height:86px;padding:0 max(5.5%,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fff;position:sticky;top:0;z-index:30;box-shadow:0 3px 18px #0d1b2b0c}
+.brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:800;letter-spacing:.06em;white-space:nowrap}
+.brandmark{width:56px;height:56px;border-radius:14px;object-fit:cover;flex-shrink:0;box-shadow:0 0 0 2px #c3ccda,0 8px 18px #13295C40;transition:transform .3s}
+.brand:hover .brandmark{transform:rotate(-4deg) scale(1.05)}
+.brand small{display:block;font:600 9px 'DM Sans',Arial,sans-serif;letter-spacing:.18em;color:#6b7683;margin-top:3px}
+.navlinks{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:700}
+.navlinks a{padding:10px 0;position:relative}
+.navlinks a:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.navlinks a:hover{color:var(--gold-ink)}.navlinks a:hover:after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 21px;border-radius:7px;background:var(--gold);color:#0B1838;font-weight:800;font-size:13px;border:0;cursor:pointer;transition:.2s;font-family:inherit}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn.outline{background:transparent;border:1px solid #ffffff70;color:#fff}
+.menu{display:none;width:46px;height:46px;border:0;border-radius:8px;background:#f2f3f5;color:var(--navy);cursor:pointer;align-items:center;justify-content:center}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;min-height:660px;display:flex;align-items:center;color:#fff;padding:90px 8%;background:var(--navy)}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0b1838f5 0%,#0b1838d6 50%,#0b183866 100%);z-index:1}
+.hero-inner{position:relative;z-index:2;max-width:780px}
+.eyebrow{color:var(--gold-ink);font-size:11px;letter-spacing:.22em;font-weight:800;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.eyebrow:before{content:'';height:2px;width:34px;background:currentColor}
+.hero .eyebrow,.dark .eyebrow,.contact-info .eyebrow{color:var(--gold)}
+h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin:22px 0}
+.hero p{font-size:17px;line-height:1.8;color:#d8e0e8;max-width:590px;margin:0}
+.typed-line{margin-top:18px !important;font:700 19px Manrope,Arial,sans-serif;color:#fff !important}
+.typed-line span{color:var(--gold)}
+.caret{display:inline-block;width:3px;height:1em;background:var(--gold);margin-left:3px;vertical-align:-.12em;animation:caret 1s steps(1) infinite}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}
+.hero-note{margin-top:54px;display:flex;gap:36px;flex-wrap:wrap;color:#d6dce4;font-size:12px}
+.hero-note strong{display:block;font:800 24px Manrope,Arial,sans-serif;color:#fff;margin-bottom:4px;font-variant-numeric:tabular-nums}
+
+/* Sections */
+.section{padding:100px 8%}
+.section.soft{background:var(--cream)}
+.section.dark{background:var(--navy);color:#fff}
+.wrap{max-width:1200px;margin:auto}
+.section-head{max-width:720px;margin-bottom:48px}
+.section-head h2{font-size:clamp(30px,4vw,47px);letter-spacing:-.04em;line-height:1.13;margin:16px 0}
+.section-head p{color:var(--muted);line-height:1.8;margin:0}
+.dark .section-head p{color:#c1cbd5}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.photo-card{min-height:430px;border-radius:var(--radius);position:relative;box-shadow:var(--shadow);background:radial-gradient(circle at 50% 45%,#2A4C8F 0%,#13295C 55%,#0B1838 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo-card img{width:330px;max-width:80%;aspect-ratio:1;height:auto;border-radius:50%;box-shadow:0 0 0 8px #c3ccda22,0 0 60px #E8892B33,0 24px 50px #0008;animation:float 6s ease-in-out infinite}
+.photo-card:after{content:'POINT PRO GUINÉE';position:absolute;bottom:22px;left:22px;background:#13295Ce8;color:#fff;padding:14px 18px;font:800 11px Manrope,Arial,sans-serif;letter-spacing:.16em}
+.intro-copy h2{font-size:42px;line-height:1.13;letter-spacing:-.04em;margin:16px 0}
+.intro-copy p{color:var(--muted);line-height:1.9}
+.ticks{list-style:none;padding:0;margin:25px 0}
+.ticks li{padding:9px 0 9px 30px;position:relative;font-weight:600;font-size:15px}
+.ticks li svg{position:absolute;left:0;top:11px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy);color:#fff;border-radius:var(--radius);margin-top:70px;padding:30px}
+.stat{padding:10px 22px;border-right:1px solid #ffffff26}
+.stat:last-child{border:0}
+.stat strong{font:800 36px Manrope,Arial,sans-serif;color:var(--gold);display:block;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:#d1d9e1}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.service{background:#fff;border:1px solid var(--line);border-radius:14px;padding:27px 23px;transition:.25s;display:flex;flex-direction:column}
+.service:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:#E8892B}
+.service .num{font:800 12px Manrope,Arial,sans-serif;color:var(--gold-ink);letter-spacing:.15em}
+.service .symbol{width:54px;height:54px;border-radius:12px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:20px 0 16px}
+.service h3{font-size:19px;margin:0 0 10px}
+.service p{font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 16px;flex:1}
+.more{font-size:13px;font-weight:800;color:var(--gold-ink)}
+.more:hover{text-decoration:underline}
+
+/* Équipements */
+.equipment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.equip{background:var(--navy3);border:1px solid #ffffff18;border-radius:14px;overflow:hidden;transition:.25s}
+.equip:hover{transform:translateY(-6px);border-color:#E8892B66}
+.equip-visual{height:170px;display:flex;align-items:center;justify-content:center;color:var(--gold);background:radial-gradient(circle at 50% 40%,#2A4C8F,#13295C)}
+.equip-body{padding:22px}
+.equip h3{margin:6px 0 8px;font-size:18px}
+.equip p{margin:0;color:#c1cbd5;font-size:14px;line-height:1.7}
+.equip-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:800}
+
+/* Briqueterie */
+.brick-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center}
+.brick-photo{position:relative;height:440px;border-radius:var(--radius);overflow:hidden;background:#d8d4ca}
+.brick-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.brick-photo span{position:absolute;left:18px;bottom:18px;background:#13295Ce8;color:#fff;padding:10px 14px;font-size:13px;border-radius:6px}
+.brick-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:25px 0}
+.brick-points div{background:#ffffff0c;border:1px solid #ffffff20;padding:17px;border-radius:10px}
+.brick-points strong{display:block;color:var(--gold);font:800 17px Manrope,Arial,sans-serif;margin-bottom:5px}
+.brick-points span{font-size:13px;color:#d4dce4}
+
+/* Catalogue */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.tab{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid #cfd4da;background:#fff;color:var(--ink);font:700 14px 'DM Sans',Arial,sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.table-box{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.price-table{width:100%;border-collapse:collapse;min-width:720px;font-size:15px}
+.price-table th{background:var(--navy);color:#fff;text-align:left;font:800 12px Manrope,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:14px 16px}
+.price-table td{padding:14px 16px;border-top:1px solid var(--line);vertical-align:top;line-height:1.5}
+.price-table tr:nth-child(even) td{background:#fafbfc}
+.price-table .prod{font-weight:800;color:var(--navy)}
+.price-table .ref{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:2px}
+.price-table .dim{white-space:nowrap;font-variant-numeric:tabular-nums}
+.price-table .price{white-space:nowrap;font:800 16px Manrope,Arial,sans-serif;color:var(--gold-ink);text-align:right;font-variant-numeric:tabular-nums}
+.price-table th:last-child{text-align:right}
+.pave-card{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pave{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+.pave h3{margin:0 0 6px;font-size:18px;color:var(--navy)}
+.pave p{margin:0;color:var(--muted);line-height:1.6;font-size:15px}
+.pave .big{font:800 30px Manrope,Arial,sans-serif;color:var(--gold-ink);margin:6px 0 2px}
+.cat-docs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
+.cat-doc{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;transition:.25s}
+.cat-doc:hover{border-color:var(--gold);box-shadow:var(--shadow)}
+.cat-doc img{width:96px;height:96px;object-fit:cover;object-position:top;border-radius:8px;flex-shrink:0}
+.cat-doc b{display:block;color:var(--navy);font-size:15px}
+.cat-doc span{font-size:13px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin-top:14px;line-height:1.6}
+
+/* Bandeau */
+.quote-band{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:70px 8%}
+.quote-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35}
+.quote-band:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,#13295Cf2,#13295C9c);z-index:1}
+.quote-band .wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.quote-band h2{font-size:clamp(27px,4vw,42px);margin:0 0 10px}
+.quote-band p{color:#d7dfe8;margin:0}
+.marquee{overflow:hidden;background:var(--gold);color:var(--navy);padding:16px 0}
+.track{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.track span{font:800 22px Manrope,Arial,sans-serif;letter-spacing:.12em;white-space:nowrap;padding-right:34px;display:inline-flex;align-items:center;gap:34px}
+.track span:after{content:"";width:8px;height:8px;border-radius:50%;background:var(--navy)}
+
+/* Galerie */
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:200px 200px;gap:13px}
+.gallery > *{border-radius:12px;overflow:hidden;position:relative;margin:0}
+.gallery > :first-child{grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.g-tile{background:radial-gradient(circle at 50% 40%,#2A4C8F,#13295C);color:#c9d3e0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;font-size:14px;padding:16px}
+.g-tile svg{color:var(--gold)}
+.gallery figcaption,.gallery .cap{position:absolute;left:12px;bottom:12px;background:#13295Ce8;color:#fff;font-size:12px;padding:7px 10px;border-radius:5px}
+.gallery .logo-tile{background:#0f2240;display:flex;align-items:center;justify-content:center}
+.gallery .logo-tile img{width:150px;height:150px;border-radius:50%}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px}
+.contact-info{background:var(--navy);color:#fff;padding:35px;border-radius:var(--radius)}
+.contact-info h3{font-size:24px;margin:0 0 6px}
+.contact-info p{color:#c3ced8;line-height:1.8;font-size:15px}
+.contact-line{padding:16px 0;border-top:1px solid #ffffff22;font-size:15px}
+.contact-line b{display:block;color:var(--gold);font-size:11px;letter-spacing:.15em;margin-bottom:6px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:11px;font-weight:800;color:#47546a;letter-spacing:.05em}
+.field input,.field select,.field textarea{padding:14px;border:1px solid #cfd4da;border-radius:7px;font:15px 'DM Sans',Arial,sans-serif;background:#fff;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px #E8892B40}
+.field textarea{min-height:115px;resize:vertical}
+.who{grid-column:1/-1;border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.who legend{font-size:11px;font-weight:800;color:#47546a;letter-spacing:.05em;padding:0;margin-bottom:7px}
+.who-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.who-opt{position:relative}
+.who-opt input{position:absolute;opacity:0;width:1px;height:1px}
+.who-opt span{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 16px;border:1px solid #cfd4da;border-radius:7px;background:#fff;font-weight:700;font-size:15px;cursor:pointer;transition:.2s}
+.who-opt span:before{content:"";width:18px;height:18px;border-radius:50%;border:2px solid #9aa4b2;flex-shrink:0;box-sizing:border-box}
+.who-opt input:checked + span{border-color:var(--navy);background:#eef2fa;color:var(--navy)}
+.who-opt input:checked + span:before{border:6px solid var(--navy)}
+.who-opt input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+.form small{grid-column:1/-1;color:var(--muted);line-height:1.6;font-size:13px}
+
+/* Pied de page */
+.footer{background:#0B1838;color:#fff;padding:55px 8% 25px}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:35px}
+.footer p,.footer a{font-size:14px;color:#b7c2ce;line-height:1.8}
+.footer a:hover{color:#fff}
+.footer h4{font:800 12px Manrope,Arial,sans-serif;letter-spacing:.12em;color:var(--gold);margin:8px 0 10px}
+.copyright{border-top:1px solid #ffffff20;margin-top:35px;padding-top:20px;color:#8f9cab;font-size:12px;display:flex;justify-content:space-between;gap:20px}
+.wa{position:fixed;right:calc(22px + env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:8px;background:#178045;color:#fff;padding:15px 19px;border-radius:40px;font-weight:800;font-size:14px;box-shadow:0 8px 30px #0003;z-index:40;animation:pulse 2.6s ease-in-out infinite}
+.wa:hover{background:#11663a}
+
+/* Animations */
+@keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes caret{50%{opacity:0}}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes shine{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes pulse{0%,100%{box-shadow:0 8px 30px #0003,0 0 0 0 #17804566}50%{box-shadow:0 8px 30px #0003,0 0 0 12px #17804500}}
+.w{display:inline-block;animation:up .7s cubic-bezier(.2,.8,.2,1) both}
+.gold{background:linear-gradient(90deg,#E8892B 0%,#FFD29A 25%,#E8892B 50%,#FFD29A 75%,#E8892B 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.w.gold{animation:up .7s cubic-bezier(.2,.8,.2,1) both,shine 6s linear infinite}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1100px){.navlinks{display:none;position:absolute;top:86px;left:0;right:0;background:#fff;padding:20px max(5.5%,env(safe-area-inset-left,0px));flex-direction:column;align-items:flex-start;gap:4px;box-shadow:var(--shadow)}.navlinks.open{display:flex}.menu{display:inline-flex}}
+@media(max-width:900px){.nav>.btn{display:none}.intro-grid,.brick-grid,.contact-grid{grid-template-columns:1fr}.services{grid-template-columns:repeat(2,1fr)}.equipment-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(2,1fr);gap:15px}.stat:nth-child(2){border:0}.quote-band .wrap{align-items:flex-start;flex-direction:column}}
+@media(max-width:700px){.pave-card,.cat-docs{grid-template-columns:1fr}}
+@media(max-width:560px){.topbar{padding:9px 5%;font-size:11px}.nav{padding:0 5%;height:76px}.navlinks{top:76px}.brandmark{width:48px;height:48px}.brand{font-size:15px}.hero{min-height:620px;padding:70px 6%}.hero p{font-size:15px}.section{padding:70px 6%}.services,.equipment-grid{grid-template-columns:1fr}.stats{padding:18px}.stat{padding:12px;border:0}.stat strong{font-size:28px}.gallery{grid-template-columns:1fr 1fr;grid-template-rows:170px 140px 140px}.brick-points{grid-template-columns:1fr 1fr}.form{grid-template-columns:1fr}.field.full,.form small{grid-column:auto}.footer-grid{grid-template-columns:1fr}.copyright{flex-direction:column}.intro-copy h2{font-size:34px}.wa{padding:14px 16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none !important;transition:none !important}.w,.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>Une entreprise au service de vos chantiers en Guinée</span><span>Koliagbé · Conakry · Mamou · Kindia &nbsp;|&nbsp; <a href="tel:+224620776222">+224 620 77 62 22</a></span></div>
+
+<header class="nav">
+<a class="brand" href="#accueil"><img class="brandmark" src="images/logo-embleme.png" alt="Logo POINT PRO" width="56" height="56"><span>POINT PRO GUINÉE<small>ON CONSTRUIT VOS AMBITIONS</small></span></a>
+<nav class="navlinks" id="navlinks" aria-label="Navigation principale"><a href="#entreprise">L’entreprise</a><a href="#activites">Nos activités</a><a href="#materiaux">Briqueterie</a><a href="#catalogue">Tarifs</a><a href="#location">Location &amp; transport</a><a href="#realisations">Réalisations</a><a href="#contact">Contact</a></nav>
+<a class="btn" href="#contact">Demander un devis ↗</a>
+<button class="menu" id="menuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navlinks"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</header>
+
+<main>
+<section class="hero" id="accueil">
+<img class="hero-bg" src="images/briques.png" alt="" aria-hidden="true">
+<div class="hero-inner">
+<div class="eyebrow">Votre partenaire construction en Guinée</div>
+<h1 aria-label="Des solutions solides pour bâtir l’avenir."><span class="w" style="animation-delay:.15s">Des</span> <span class="w" style="animation-delay:.27s">solutions</span> <span class="w" style="animation-delay:.39s">solides</span> <span class="w" style="animation-delay:.51s">pour</span> <span class="w gold" style="animation-delay:.63s">bâtir</span> <span class="w gold" style="animation-delay:.75s">l’avenir.</span></h1>
+<p>Location d’engins, transport, production de parpaings et vente de matériaux : un partenaire fiable pour accompagner chaque étape de vos projets.</p>
+<p class="typed-line">Nous livrons <span id="typed"></span><i class="caret" aria-hidden="true"></i></p>
+<div class="hero-actions"><a class="btn" href="#activites">Découvrir nos services ↗</a><a class="btn outline" href="#contact">Parler à notre équipe</a></div>
+<div class="hero-note"><div><strong class="count" data-to="4">4</strong>domaines d’expertise</div><div><strong class="count" data-to="5000">5 000</strong>briques par jour</div><div><strong class="count" data-to="3">3</strong>villes desservies</div></div>
+</div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section class="section" id="entreprise"><div class="wrap">
+<div class="intro-grid">
+<div class="photo-card reveal" role="img" aria-label="Logo POINT PRO, « On construit vos ambitions »"><img src="images/logo-rond.jpg" alt="" width="330" height="330"></div>
+<div class="intro-copy reveal">
+<div class="eyebrow">Qui sommes-nous</div>
+<h2>Un seul partenaire. Toute la force de votre chantier.</h2>
+<p>Basée à Koliagbé, POINT PRO GUINÉE rassemble les services essentiels à la réussite de vos travaux. Nous accompagnons particuliers, entrepreneurs, entreprises et promoteurs avec une offre intégrée et un interlocuteur unique.</p>
+<ul class="ticks">
+<li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45A12" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Des solutions adaptées à vos besoins et délais</li>
+<li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45A12" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Une offre combinant matériel, transport et matériaux</li>
+<li><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45A12" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Une présence à Conakry, Mamou et Kindia</li>
+</ul>
+<a class="btn" href="#contact">Échanger avec POINT PRO ↗</a>
+</div>
+</div>
+<div class="stats reveal">
+<div class="stat"><strong class="count" data-to="4">4</strong><span>Activités complémentaires</span></div>
+<div class="stat"><strong class="count" data-to="5000">5 000</strong><span>Briques par jour</span></div>
+<div class="stat"><strong class="count" data-to="3">3</strong><span>Villes desservies</span></div>
+<div class="stat"><strong class="count" data-to="1">1</strong><span>Partenaire pour vos chantiers</span></div>
+</div>
+</div></section>
+
+<section class="section soft" id="activites"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Nos expertises</div><h2>Les ressources qu’il vous faut, au bon moment.</h2><p>De la préparation du terrain à l’approvisionnement, POINT PRO vous accompagne avec quatre pôles de services complémentaires.</p></div>
+<div class="services">
+<article class="service reveal"><span class="num">01 / PRODUCTION</span><div class="symbol"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="9" height="6"/><rect x="13" y="5" width="9" height="6"/><rect x="7" y="13" width="10" height="6"/></svg></div><h3>Briqueterie</h3><p>Parpaings, dallettes et bordures pour vos travaux de construction et d’aménagement.</p><a class="more" href="#catalogue">Voir les tarifs →</a></article>
+<article class="service reveal"><span class="num">02 / FOURNITURES</span><div class="symbol"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12l1 3-1 3 1 3-1 3 1 3-1 1H6l-1-1 1-3-1-3 1-3-1-3 1-3z"/><path d="M9 10h6"/><path d="M9 13h6"/></svg></div><h3>Matériaux</h3><p>Ciment, fer à béton et autres matériaux de construction selon vos besoins.</p><a class="more" href="#contact">Demander un prix →</a></article>
+<article class="service reveal"><span class="num">03 / TRANSPORT</span><div class="symbol"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12v10H2z"/><path d="M14 9h4l4 4v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div><h3>Transport &amp; logistique</h3><p>Transport de matériaux et déplacement d’engins avec des solutions adaptées au terrain.</p><a class="more" href="#transport">Nos solutions transport →</a></article>
+<article class="service reveal"><span class="num">04 / LOCATION</span><div class="symbol"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="16" width="11" height="4" rx="2"/><path d="M4 16v-4h5l2 4"/><path d="M9 12l4-6 5 2"/><path d="M18 8l2 5h-4z"/></svg></div><h3>Location d’engins</h3><p>Des équipements pour vos opérations de chantier, de manutention et de bétonnage.</p><a class="more" href="#location">Découvrir les équipements →</a></article>
+</div>
+</div></section>
+
+<section class="section dark" id="materiaux"><div class="wrap brick-grid">
+<div class="brick-photo reveal"><img src="images/briques.png" alt="Parpaings fraîchement moulés à la sortie de la pondeuse"><span>Production du jour, 29 octobre</span></div>
+<div class="reveal">
+<div class="eyebrow">Notre briqueterie</div>
+<h2 style="font:800 clamp(32px,4vw,47px) Manrope,Arial,sans-serif;line-height:1.1;letter-spacing:-.04em;margin:16px 0">Des matériaux conçus pour vos ouvrages.</h2>
+<p style="color:#c1cbd5;line-height:1.85">Notre unité de production fabrique des parpaings et propose également des dallettes et des bordures de trottoir. Nous commercialisons aussi du ciment, du fer à béton et divers matériaux de construction.</p>
+<div class="brick-points"><div><strong>5 000 / jour</strong><span>Capacité de production</span></div><div><strong>Parpaings</strong><span>Pour vos murs et ouvrages</span></div><div><strong>Dallettes</strong><span>Pour vos aménagements</span></div><div><strong>Bordures</strong><span>Pour vos voiries et trottoirs</span></div></div>
+<a class="btn" href="#catalogue">Voir les tarifs ↗</a> <a class="btn outline" href="#contact">Commander</a>
+</div>
+</div></section>
+
+<section class="section soft" id="catalogue"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Catalogue officiel · Édition chantier</div><h2>Nos produits et nos tarifs.</h2><p>Prix en francs guinéens (GNF), à l’unité sauf mention contraire. Pour une grande quantité ou une livraison, demandez-nous un devis.</p></div>
+<div class="tabs" role="tablist" aria-label="Gammes de produits">
+<button class="tab" role="tab" id="t-blocs" aria-selected="true" aria-controls="p-blocs">Blocs et briques</button>
+<button class="tab" role="tab" id="t-hourdis" aria-selected="false" aria-controls="p-hourdis">Hourdis et bordures</button>
+<button class="tab" role="tab" id="t-paves" aria-selected="false" aria-controls="p-paves">Pavés</button>
+</div>
+<div class="table-box reveal" role="tabpanel" id="p-blocs" aria-labelledby="t-blocs"><table class="price-table"><thead><tr><th>Produit</th><th>Description et usage</th><th>Dimensions</th><th>Prix (unité)</th></tr></thead><tbody><tr><td class="prod">Brique 15 creux standard<span class="ref">Réf. H2 / M6</span></td><td>Bloc creux standard pour murs extérieurs et clôtures.</td><td class="dim">400 × 150 × 200 mm</td><td class="price">7 000 GNF</td></tr><tr><td class="prod">Brique 20 creux<span class="ref">Réf. H1 / H5</span></td><td>Bloc creux pour les structures et les murs porteurs.</td><td class="dim">400 × 200 × 200 mm</td><td class="price">10 000 GNF</td></tr><tr><td class="prod">Brique 12 creux<span class="ref">Réf. M3</span></td><td>Bloc creux pour cloisons et séparations intérieures.</td><td class="dim">400 × 125 × 200 mm</td><td class="price">6 000 GNF</td></tr><tr><td class="prod">Brique 10 creux<span class="ref">Réf. H4 / H7</span></td><td>Bloc creux fin pour gaines techniques et séparations légères.</td><td class="dim">400 × 100 × 200 mm</td><td class="price">5 500 GNF</td></tr><tr><td class="prod">Brique 20 pleine<span class="ref">Réf. H19</span></td><td>Bloc plein à haute résistance mécanique pour soubassements et fondations.</td><td class="dim">400 × 150 × 200 mm</td><td class="price">15 000 GNF</td></tr><tr><td class="prod">Brique 15 pleine<span class="ref">Réf. H18</span></td><td>Bloc plein à compacité renforcée.</td><td class="dim">400 × 150 × 200 mm</td><td class="price">13 000 GNF</td></tr><tr><td class="prod">Brique 15 creux libanais<span class="ref">Réf. H15</span></td><td>Bloc perforé alvéolaire à haute performance d’isolation thermique.</td><td class="dim">400 × 150 × 200 mm</td><td class="price">7 500 GNF</td></tr></tbody></table></div>
+<div class="table-box" role="tabpanel" id="p-hourdis" aria-labelledby="t-hourdis" hidden><table class="price-table"><thead><tr><th>Produit</th><th>Description et usage</th><th>Dimensions</th><th>Prix (unité)</th></tr></thead><tbody><tr><td class="prod">Hourdis sénégalais<span class="ref">Réf. H9</span></td><td>Élément de coffrage pour dalles et planchers intermédiaires.</td><td class="dim">500 × 150 × 200 mm</td><td class="price">8 500 GNF</td></tr><tr><td class="prod">Hourdis français<span class="ref">Réf. H10</span></td><td>Entrevous technique avec système d’emboîtement.</td><td class="dim">400 × 150 × 200 mm</td><td class="price">9 000 GNF</td></tr><tr><td class="prod">Bordure de route grand format<span class="ref">Modèle C6</span></td><td>Bordure de voirie en béton compacté haute résistance, pour séparer et délimiter les voies lourdes.</td><td class="dim">800 × 150 × 300 mm</td><td class="price">À discuter</td></tr></tbody></table></div>
+<div role="tabpanel" id="p-paves" aria-labelledby="t-paves" hidden>
+<div class="pave-card">
+<div class="pave"><h3>Pavés de voirie</h3><p>Revêtements extérieurs haute résistance pour cours, allées et parkings. Épaisseur 60 mm.</p><p class="big">90 000 GNF / m²</p><p>Tarif unique, tous modèles.</p></div>
+<div class="pave"><h3>Modèles disponibles</h3><p><b>P1, P6, P16</b> : format rectangulaire, classique et en H, idéal pour les zones de fort trafic et les parkings de stockage.</p><p style="margin-top:10px"><b>P10</b> : format trèfle, design esthétique autobloquant.</p></div>
+</div>
+</div>
+<div class="cat-docs reveal">
+<a class="cat-doc" href="images/catalogue-blocs-hourdis.jpg" target="_blank" rel="noopener"><img src="images/catalogue-blocs-hourdis.jpg" alt="Page du catalogue : blocs, agglomérés et hourdis"><span><b>Catalogue blocs et hourdis</b><span>Voir la page complète ↗</span></span></a>
+<a class="cat-doc" href="images/catalogue-paves-bordures.jpg" target="_blank" rel="noopener"><img src="images/catalogue-paves-bordures.jpg" alt="Page du catalogue : pavés et bordures"><span><b>Catalogue pavés et bordures</b><span>Voir la page complète ↗</span></span></a>
+</div>
+<p class="note">Tarifs repris du catalogue officiel POINT PRO publié sur notre page Facebook. Ils peuvent évoluer : confirmez le prix au moment de votre commande.</p>
+</div></section>
+
+<section class="section dark" id="location"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Location &amp; transport</div><h2>Du matériel et des moyens logistiques pour avancer.</h2><p>Indiquez-nous votre chantier, sa localisation et la durée souhaitée. Notre équipe pourra vous orienter vers la solution adaptée.</p></div>
+<div class="equipment-grid">
+<article class="equip reveal"><div class="equip-visual"><svg aria-hidden="true" width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="16" width="11" height="4" rx="2"/><path d="M4 16v-4h5l2 4"/><path d="M9 12l4-6 5 2"/><path d="M18 8l2 5h-4z"/></svg></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Engins de chantier</h3><p>Poclain, compacteur et équipements pour vos travaux de terrassement et préparation.</p></div></article>
+<article class="equip reveal"><div class="equip-visual"><svg aria-hidden="true" width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l9-3 4 9-9 3z"/><path d="M8 16l-2 4"/><path d="M15 13l3 7"/><circle cx="6" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Béton &amp; manutention</h3><p>Bétonnières, pompes à béton et chariots élévateurs selon disponibilité.</p></div></article>
+<article class="equip reveal" id="transport"><div class="equip-visual"><svg aria-hidden="true" width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12v10H2z"/><path d="M14 9h4l4 4v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div><div class="equip-body"><span class="equip-tag">Transport</span><h3>Transport de matériaux &amp; engins</h3><p>Camions bennes, porte-chars et semi-plateaux pour vos opérations logistiques.</p></div></article>
+</div>
+</div></section>
+
+<section class="quote-band"><img src="images/briques.png" alt="" aria-hidden="true"><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="#contact">Demander un devis ↗</a></div></section>
+
+<section class="section" id="realisations"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Sur le terrain</div><h2>La force du concret.</h2><p>Nos chantiers, nos engins et notre production. Cette galerie s’enrichira au fil de nos réalisations.</p></div>
+<div class="gallery reveal">
+<figure><img src="images/briques.png" alt="Parpaings sur palette dans la briqueterie"><figcaption>Briqueterie · production du jour</figcaption></figure>
+<figure><img src="images/fb-banniere.jpg" alt="Bannière POINT PRO, « On construit vos ambitions »"><figcaption>Notre identité</figcaption></figure>
+<a href="images/catalogue-blocs-hourdis.jpg" target="_blank" rel="noopener" style="display:block;position:relative"><img src="images/catalogue-blocs-hourdis.jpg" alt="Catalogue des blocs et hourdis" style="object-position:top"><span class="cap">Catalogue blocs ↗</span></a>
+<a href="images/catalogue-paves-bordures.jpg" target="_blank" rel="noopener" style="display:block;position:relative"><img src="images/catalogue-paves-bordures.jpg" alt="Catalogue des pavés et bordures" style="object-position:top"><span class="cap">Catalogue pavés ↗</span></a>
+<figure class="logo-tile" style="background:#fff"><img src="images/logo-horizontal.jpg" alt="Logo horizontal POINT PRO" style="width:100%;height:100%;object-fit:contain;border-radius:0"></figure>
+</div>
+</div></section>
+
+<section class="section soft" id="contact"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Contact &amp; devis</div><h2>Parlons de votre projet.</h2><p>Décrivez votre besoin : notre équipe recevra votre demande directement sur WhatsApp.</p></div>
+<div class="contact-grid">
+<div class="contact-info reveal"><h3>POINT PRO GUINÉE</h3><p>Un seul interlocuteur, de l’engin à la brique, du ciment à la livraison.</p>
+<div class="contact-line"><b>TÉLÉPHONE &amp; WHATSAPP</b><a href="tel:+224620776222">+224 620 77 62 22</a><br><a href="tel:+224625964412">+224 625 96 44 12</a></div>
+<div class="contact-line"><b>IMPLANTATION</b>Koliagbé, Guinée</div>
+<div class="contact-line"><b>ZONES D’INTERVENTION</b>Conakry · Mamou · Kindia</div>
+<div class="contact-line"><b>NOTRE DEVISE</b>On construit vos ambitions.</div></div>
+<form class="form reveal" id="devis">
+<fieldset class="who"><legend>VOUS ÊTES *</legend><div class="who-opts">
+<label class="who-opt"><input type="radio" name="who" value="Particulier" checked><span>Particulier</span></label>
+<label class="who-opt"><input type="radio" name="who" value="Entreprise"><span>Entreprise</span></label>
+</div></fieldset>
+<div class="field full" id="companyField" hidden><label for="company">NOM DE L’ENTREPRISE *</label><input id="company" placeholder="Raison sociale" autocomplete="organization"></div>
+<div class="field"><label for="name">NOM COMPLET *</label><input id="name" required placeholder="Votre nom" autocomplete="name"></div>
+<div class="field"><label for="phone">TÉLÉPHONE *</label><input id="phone" type="tel" required placeholder="Votre numéro" autocomplete="tel"></div>
+<div class="field"><label for="service">SERVICE SOUHAITÉ</label><select id="service"><option>Briqueterie / parpaings</option><option>Hourdis</option><option>Pavés / bordures</option><option>Matériaux de construction</option><option>Transport</option><option>Location d’engins</option><option>Plusieurs services</option></select></div>
+<div class="field"><label for="city">VILLE DU CHANTIER</label><select id="city"><option>Conakry</option><option>Koliagbé</option><option>Mamou</option><option>Kindia</option><option>Autre</option></select></div>
+<div class="field full"><label for="need">DÉCRIVEZ VOTRE BESOIN</label><textarea id="need" placeholder="Quantité, type d’engin, date, durée, adresse du chantier…"></textarea></div>
+<button class="btn field full" type="submit">Envoyer ma demande sur WhatsApp ↗</button>
+<small>En cliquant, WhatsApp s’ouvrira avec votre demande préremplie. Vous pourrez la vérifier avant l’envoi.</small>
+</form>
+</div>
+</div></section>
+</main>
+
+<footer class="footer">
+<div class="footer-grid">
+<div><a class="brand" href="#accueil"><img class="brandmark" src="images/logo-embleme.png" alt="Logo POINT PRO" width="56" height="56"><span>POINT PRO GUINÉE<small style="color:#9aa6b4">ON CONSTRUIT VOS AMBITIONS</small></span></a><p>Location, transport, briqueterie et matériaux de construction. Un partenaire pour vos projets en Guinée.</p></div>
+<div><h4>EXPLORER</h4><p><a href="#entreprise">L’entreprise</a><br><a href="#activites">Nos activités</a><br><a href="#catalogue">Tarifs</a><br><a href="#realisations">Réalisations</a></p></div>
+<div><h4>NOS SERVICES</h4><p><a href="#materiaux">Briqueterie &amp; matériaux</a><br><a href="#transport">Transport</a><br><a href="#location">Location d’engins</a></p></div>
+<div><h4>CONTACT</h4><p><a href="tel:+224620776222">+224 620 77 62 22</a><br><a href="tel:+224625964412">+224 625 96 44 12</a><br>Koliagbé, Guinée<br>Conakry · Mamou · Kindia</p></div>
+</div>
+<div class="copyright"><span>© 2026 POINT PRO GUINÉE. Tous droits réservés.</span><span>On construit vos ambitions, brique après brique.</span></div>
+</footer>
+<a class="wa" href="https://wa.me/224620776222" target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3L3 21z"/></svg>WhatsApp ↗</a>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Menu mobile
+  var mb = document.getElementById('menuBtn'), nav = document.getElementById('navlinks');
+  function setMenu(o){ nav.classList.toggle('open', o); mb.setAttribute('aria-expanded', o ? 'true' : 'false'); mb.setAttribute('aria-label', o ? 'Fermer le menu' : 'Ouvrir le menu'); }
+  mb.addEventListener('click', function(){ setMenu(!nav.classList.contains('open')); });
+  [].forEach.call(nav.querySelectorAll('a'), function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+  // Machine à écrire
+  var words = ['vos parpaings', 'vos engins', 'votre ciment', 'vos ambitions'], wi = 0, ci = 0, del = false, pause = 0, typed = document.getElementById('typed');
+  if (reduce) typed.textContent = words[3];
+  else setInterval(function(){
+    if (pause) { pause--; return; }
+    var w = words[wi];
+    if (!del) { if (ci < w.length) ci++; else { del = true; pause = 22; } }
+    else { if (ci > 0) ci--; else { del = false; pause = 4; wi = (wi + 1) % words.length; } }
+    typed.textContent = w.slice(0, ci);
+  }, 85);
+
+  // Bandeau défilant
+  var mq = ['BRIQUETERIE', 'MATÉRIAUX', 'TRANSPORT', 'LOCATION D’ENGINS', 'CONAKRY', 'MAMOU', 'KINDIA', 'ON CONSTRUIT VOS AMBITIONS'];
+  document.getElementById('track').innerHTML = mq.concat(mq).map(function(x){ return '<span>' + x + '</span>'; }).join('');
+
+  // Apparition au défilement et compteurs
+  function countUp(el){
+    var to = +el.dataset.to, start = performance.now();
+    function f(now){ var p = Math.min(1, (now - start) / 1800), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(to * e).toLocaleString('fr-FR'); if (p < 1) requestAnimationFrame(f); }
+    requestAnimationFrame(f);
+  }
+  var targets = document.querySelectorAll('.reveal, .count');
+  if (reduce || !('IntersectionObserver' in window)) [].forEach.call(targets, function(el){ el.classList.add('in'); });
+  else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        if (en.target.classList.contains('count')) countUp(en.target);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.15 });
+    [].forEach.call(targets, function(el){ io.observe(el); });
+  }
+
+  // Onglets du catalogue
+  var tabs = document.querySelectorAll('.tab');
+  [].forEach.call(tabs, function(t, k){
+    t.addEventListener('click', function(){ [].forEach.call(tabs, function(o){ var on = o === t; o.setAttribute('aria-selected', on ? 'true' : 'false'); var pnl = document.getElementById(o.getAttribute('aria-controls')); pnl.hidden = !on; if (on) pnl.classList.add('in'); }); });
+    t.addEventListener('keydown', function(e){ if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; var n = tabs[(k + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); n.click(); });
+  });
+
+  // Particulier / Entreprise
+  var cf = document.getElementById('companyField'), ci2 = document.getElementById('company');
+  [].forEach.call(document.querySelectorAll('input[name="who"]'), function(r){
+    r.addEventListener('change', function(){ var ent = r.value === 'Entreprise' && r.checked; cf.hidden = !ent; ci2.required = ent; });
+  });
+
+  // Formulaire vers WhatsApp
+  document.getElementById('devis').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = function(id){ return document.getElementById(id).value.trim(); };
+    var who = document.querySelector('input[name="who"]:checked').value;
+    var msg = 'Bonjour POINT PRO GUINÉE, je souhaite un devis.\nClient : ' + who + (who === 'Entreprise' ? ' (' + v('company') + ')' : '') + '\nNom : ' + v('name') + '\nTéléphone : ' + v('phone') + '\nService : ' + v('service') + '\nVille : ' + v('city') + '\nBesoin : ' + v('need');
+    window.open('https://wa.me/224620776222?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  });
+})();
+</script>
+</body>
+</html>
