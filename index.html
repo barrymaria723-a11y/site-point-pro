@@ -15,6 +15,7 @@
 <style>
 :root{--navy:#13295C;--navy2:#1F3A78;--navy3:#1F3A78;--gold:#E8892B;--gold-ink:#A3500E;--cream:#F2F3F5;--ink:#172334;--muted:#5d6a7b;--line:#e6e7e8;--radius:18px;--shadow:0 18px 50px #0b1b2b18}
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:'DM Sans',Arial,sans-serif;color:var(--ink);background:#fff}
 h1,h2,h3,.brand{font-family:Manrope,Arial,sans-serif}
@@ -175,16 +176,18 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .field input,.field select,.field textarea{padding:14px;border:1px solid #cfd4da;border-radius:7px;font:15px 'DM Sans',Arial,sans-serif;background:#fff;color:var(--ink)}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px #E8892B40}
 .field textarea{min-height:115px;resize:vertical}
-.who{grid-column:1/-1;border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
-.who legend{font-size:11px;font-weight:800;color:#47546a;letter-spacing:.05em;padding:0;margin-bottom:7px}
-.who-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.who-opt{position:relative}
+.who{grid-column:1/-1;border:0;margin:0 0 4px;padding:0;min-width:0}
+.who legend{font-size:15px;font-weight:600;color:var(--ink);padding:0;margin-bottom:12px;letter-spacing:0}
+.who-opts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.who-opt{position:relative;display:block}
 .who-opt input{position:absolute;opacity:0;width:1px;height:1px}
-.who-opt span{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 16px;border:1px solid #cfd4da;border-radius:7px;background:#fff;font-weight:700;font-size:15px;cursor:pointer;transition:.2s}
-.who-opt span:before{content:"";width:18px;height:18px;border-radius:50%;border:2px solid #9aa4b2;flex-shrink:0;box-sizing:border-box}
-.who-opt input:checked + span{border-color:var(--navy);background:#eef2fa;color:var(--navy)}
-.who-opt input:checked + span:before{border:6px solid var(--navy)}
-.who-opt input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+.who-opt span{display:flex;align-items:center;justify-content:center;gap:12px;min-height:68px;padding:0 18px;border:1.5px solid #cfd4da;border-radius:14px;background:#fff;font:700 18px Manrope,Arial,sans-serif;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s,box-shadow .2s}
+.who-opt span:hover{border-color:#9aa4b2}
+.who-opt span:before{content:"";width:22px;height:22px;border-radius:50%;border:2px solid #9aa4b2;flex-shrink:0;box-sizing:border-box;transition:.2s;background:#fff}
+.who-opt input:checked + span{border-color:var(--gold);background:#FDF1E6;color:var(--navy);box-shadow:0 6px 18px #e8892b26}
+.who-opt input:checked + span:before{border:2px solid var(--gold);box-shadow:inset 0 0 0 4px #fff;background:var(--gold)}
+.who-opt input:focus-visible + span{outline:3px solid var(--navy);outline-offset:3px}
+.form.is-ent #cityField{grid-column:1/-1}
 .form small{grid-column:1/-1;color:var(--muted);line-height:1.6;font-size:13px}
 
 /* Pied de page */
@@ -339,15 +342,15 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 <div class="contact-line"><b>ZONES D’INTERVENTION</b>Conakry · Mamou · Kindia</div>
 <div class="contact-line"><b>NOTRE DEVISE</b>On construit vos ambitions.</div></div>
 <form class="form reveal" id="devis">
-<fieldset class="who"><legend>VOUS ÊTES *</legend><div class="who-opts">
+<fieldset class="who"><legend>Vous êtes</legend><div class="who-opts">
 <label class="who-opt"><input type="radio" name="who" value="Particulier" checked><span>Particulier</span></label>
 <label class="who-opt"><input type="radio" name="who" value="Entreprise"><span>Entreprise</span></label>
 </div></fieldset>
-<div class="field full" id="companyField" hidden><label for="company">NOM DE L’ENTREPRISE *</label><input id="company" placeholder="Raison sociale" autocomplete="organization"></div>
 <div class="field"><label for="name">NOM COMPLET *</label><input id="name" required placeholder="Votre nom" autocomplete="name"></div>
+<div class="field" id="companyField" hidden><label for="company">NOM DE L’ENTREPRISE *</label><input id="company" placeholder="Raison sociale" autocomplete="organization"></div>
 <div class="field"><label for="phone">TÉLÉPHONE *</label><input id="phone" type="tel" required placeholder="Votre numéro" autocomplete="tel"></div>
 <div class="field"><label for="service">SERVICE SOUHAITÉ</label><select id="service"><option>Briqueterie / parpaings</option><option>Hourdis</option><option>Pavés / bordures</option><option>Matériaux de construction</option><option>Transport</option><option>Location d’engins</option><option>Plusieurs services</option></select></div>
-<div class="field"><label for="city">VILLE DU CHANTIER</label><select id="city"><option>Conakry</option><option>Koliagbé</option><option>Mamou</option><option>Kindia</option><option>Autre</option></select></div>
+<div class="field" id="cityField"><label for="city">VILLE DU CHANTIER</label><select id="city"><option>Conakry</option><option>Koliagbé</option><option>Mamou</option><option>Kindia</option><option>Autre</option></select></div>
 <div class="field full"><label for="need">DÉCRIVEZ VOTRE BESOIN</label><textarea id="need" placeholder="Quantité, type d’engin, date, durée, adresse du chantier…"></textarea></div>
 <button class="btn field full" type="submit">Envoyer ma demande sur WhatsApp ↗</button>
 <small>En cliquant, WhatsApp s’ouvrira avec votre demande préremplie. Vous pourrez la vérifier avant l’envoi.</small>
@@ -422,7 +425,7 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
   // Particulier / Entreprise
   var cf = document.getElementById('companyField'), ci2 = document.getElementById('company');
   [].forEach.call(document.querySelectorAll('input[name="who"]'), function(r){
-    r.addEventListener('change', function(){ var ent = r.value === 'Entreprise' && r.checked; cf.hidden = !ent; ci2.required = ent; });
+    r.addEventListener('change', function(){ var ent = r.value === 'Entreprise' && r.checked; cf.hidden = !ent; ci2.required = ent; document.getElementById('devis').classList.toggle('is-ent', ent); if (ent) ci2.focus(); });
   });
 
   // Formulaire vers WhatsApp
