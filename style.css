@@ -295,9 +295,6 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 @keyframes introOut{to{opacity:0;visibility:hidden}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-/* Transition entre les pages */
-body{animation:fade .45s ease both}
-body.leaving main,body.leaving .page-hero{opacity:0;transform:translateY(-10px);transition:opacity .25s ease,transform .25s ease}
 /* Photos qui se dévoilent */
 .stagger img,.stagger .equip-visual.photo img{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1) .15s,transform .7s ease}
 .stagger.in img{clip-path:inset(0 0 0 0)}

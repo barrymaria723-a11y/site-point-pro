@@ -155,19 +155,6 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  // Transition douce entre les pages
-  document.addEventListener('click', function(e){
-    var a = e.target.closest && e.target.closest('a[href]');
-    if (!a || reduce || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
-    var href = a.getAttribute('href');
-    if (!/^[a-z-]+\.html(#.*)?$/.test(href)) return;
-    if (href.split('#')[0] === location.pathname.split('/').pop()) return;
-    e.preventDefault();
-    document.body.classList.add('leaving');
-    setTimeout(function(){ location.href = href; }, 230);
-  });
-  window.addEventListener('pageshow', function(){ document.body.classList.remove('leaving'); });
-
   // Onde au clic et boutons « aimantés »
   [].forEach.call(document.querySelectorAll('.btn, .wa'), function(b){
     b.addEventListener('click', function(e){
