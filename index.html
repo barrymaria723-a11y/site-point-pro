@@ -102,6 +102,16 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .equip p{margin:0;color:#c1cbd5;font-size:14px;line-height:1.7}
 .equip-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:800}
 
+.equip-visual.photo{padding:0;background:#13295C}
+.equip-visual.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.fleet{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:22px}
+.fleet figure{position:relative;margin:0;border-radius:14px;overflow:hidden;height:340px;background:var(--navy3)}
+.fleet img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.fleet figure:hover img{transform:scale(1.04)}
+.fleet figcaption{position:absolute;left:14px;bottom:14px;right:14px;background:#0b1838e6;color:#fff;font-size:14px;padding:9px 12px;border-radius:7px;line-height:1.4}
+.fleet figcaption b{color:var(--gold)}
+@media(max-width:700px){.fleet{grid-template-columns:1fr}.fleet figure{height:240px}}
+
 /* Briqueterie */
 .brick-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center}
 .brick-photo{position:relative;height:440px;border-radius:var(--radius);overflow:hidden;background:#d8d4ca}
@@ -345,7 +355,11 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 <div class="equipment-grid">
 <article class="equip reveal"><div class="equip-visual"><svg aria-hidden="true" width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="16" width="11" height="4" rx="2"/><path d="M4 16v-4h5l2 4"/><path d="M9 12l4-6 5 2"/><path d="M18 8l2 5h-4z"/></svg></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Engins de chantier</h3><p>Poclain, compacteur et équipements pour vos travaux de terrassement et préparation.</p></div></article>
 <article class="equip reveal"><div class="equip-visual"><svg aria-hidden="true" width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l9-3 4 9-9 3z"/><path d="M8 16l-2 4"/><path d="M15 13l3 7"/><circle cx="6" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Béton &amp; manutention</h3><p>Bétonnières, pompes à béton et chariots élévateurs selon disponibilité.</p></div></article>
-<article class="equip reveal" id="transport"><div class="equip-visual"><svg aria-hidden="true" width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12v10H2z"/><path d="M14 9h4l4 4v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div><div class="equip-body"><span class="equip-tag">Transport</span><h3>Transport de matériaux &amp; engins</h3><p>Camions bennes, porte-chars et semi-plateaux pour vos opérations logistiques.</p></div></article>
+<article class="equip reveal" id="transport"><div class="equip-visual photo"><img src="images/transport-camion-benne.jpg" alt="Camion benne POINT PRO chargé de parpaings" loading="lazy" style="object-position:center 60%"></div><div class="equip-body"><span class="equip-tag">Transport</span><h3>Transport de matériaux &amp; engins</h3><p>Camions bennes, porte-chars et semi-plateaux pour vos opérations logistiques.</p></div></article>
+</div>
+<div class="fleet reveal">
+<figure><img src="images/transport-camion-benne.jpg" alt="Camion benne chargé de parpaings sur le site de la briqueterie" loading="lazy"><figcaption><b>Camion benne</b> · livraison de parpaings depuis la briqueterie</figcaption></figure>
+<figure><img src="images/transport-semi-remorque.jpg" alt="Tracteur et semi-remorque transportant un conteneur au port" loading="lazy" style="object-position:center 40%"><figcaption><b>Semi-remorque</b> · transport de conteneurs et de charges lourdes</figcaption></figure>
 </div>
 </div></section>
 
@@ -354,11 +368,11 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 <section class="section" id="realisations"><div class="wrap">
 <div class="section-head reveal"><div class="eyebrow">Sur le terrain</div><h2>La force du concret.</h2><p>Nos chantiers, nos engins et notre production. Cette galerie s’enrichira au fil de nos réalisations.</p></div>
 <div class="gallery reveal">
-<figure><img src="images/briques.png" alt="Parpaings sur palette dans la briqueterie"><figcaption>Briqueterie · production du jour</figcaption></figure>
-<figure><img src="images/fb-banniere.jpg" alt="Bannière POINT PRO, « On construit vos ambitions »"><figcaption>Notre identité</figcaption></figure>
-<a href="images/catalogue-blocs-hourdis.jpg" target="_blank" rel="noopener" style="display:block;position:relative"><img src="images/catalogue-blocs-hourdis.jpg" alt="Catalogue des blocs et hourdis" style="object-position:top"><span class="cap">Catalogue blocs ↗</span></a>
-<a href="images/catalogue-paves-bordures.jpg" target="_blank" rel="noopener" style="display:block;position:relative"><img src="images/catalogue-paves-bordures.jpg" alt="Catalogue des pavés et bordures" style="object-position:top"><span class="cap">Catalogue pavés ↗</span></a>
-<figure class="logo-tile" style="background:#fff"><img src="images/logo-horizontal.jpg" alt="Logo horizontal POINT PRO" style="width:100%;height:100%;object-fit:contain;border-radius:0"></figure>
+<figure><img src="images/briqueterie-parc-stockage.jpg" alt="Parc de stockage : parpaings sur palettes" loading="lazy" style="object-position:center 42%"><figcaption>Briqueterie · parc de stockage</figcaption></figure>
+<figure><img src="images/transport-camion-benne.jpg" alt="Camion benne chargé de parpaings" loading="lazy"><figcaption>Transport · camion benne</figcaption></figure>
+<figure><img src="images/transport-semi-remorque.jpg" alt="Semi-remorque avec conteneur au port" loading="lazy" style="object-position:center 40%"><figcaption>Transport · semi-remorque</figcaption></figure>
+<figure><img src="images/pondeuse-production.jpg" alt="Pondeuse en production" loading="lazy"><figcaption>Briqueterie · pondeuse</figcaption></figure>
+<figure><img src="images/parpaings-sortie-pondeuse.jpg" alt="Parpaings creux à la sortie de la pondeuse" loading="lazy"><figcaption>Briqueterie · parpaings creux</figcaption></figure>
 </div>
 </div></section>
 
