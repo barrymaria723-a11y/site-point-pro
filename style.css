@@ -242,3 +242,42 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .page-hero h1{font-size:clamp(36px,5vw,60px);margin:14px 0 12px}
 .page-hero p{margin:0;max-width:640px;color:#d8e0e8;font-size:17px;line-height:1.7}
 @media(max-width:560px){.page-hero{padding:56px 6% 48px}}
+
+/* ===== Effets ===== */
+/* Barre de progression de lecture */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);transform-origin:left;transform:scaleX(0);z-index:60;pointer-events:none}
+/* En-tête qui se resserre au défilement */
+.nav{transition:height .3s ease,box-shadow .3s ease}
+.nav.scrolled{height:70px;box-shadow:0 8px 28px #0b183826}
+.nav.scrolled .brandmark{width:46px;height:46px}
+.brandmark{transition:width .3s ease,height .3s ease,transform .3s}
+/* Effet Ken Burns sur les photos d'en-tête */
+@keyframes kenburns{from{transform:scale(1) translate(0,0)}to{transform:scale(1.14) translate(-1.5%,-1%)}}
+.hero-bg{animation:kenburns 22s ease-in-out infinite alternate;transform-origin:center}
+/* Reflet sur les boutons */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn:after{content:"";position:absolute;top:0;bottom:0;left:-75%;width:50%;background:linear-gradient(100deg,transparent,#ffffff73,transparent);transform:skewX(-20deg);z-index:-1;transition:left .6s ease}
+.btn:hover:after{left:130%}
+/* Cartes en relief au survol */
+.service,.equip{transform-style:preserve-3d;will-change:transform}
+.tilt{transition:transform .15s ease-out,box-shadow .25s,border-color .25s}
+.equip-visual.photo{overflow:hidden}
+.equip-visual.photo img{transition:transform .7s ease}
+.equip:hover .equip-visual.photo img{transform:scale(1.08)}
+.service .symbol{transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s,color .3s}
+.service:hover .symbol{transform:rotate(-8deg) scale(1.12);background:var(--gold);color:var(--navy)}
+/* Trait des petits titres qui se dessine */
+.reveal .eyebrow:before,.section-head.reveal .eyebrow:before{width:0;transition:width .7s ease .25s}
+.reveal.in .eyebrow:before,.section-head.reveal.in .eyebrow:before{width:34px}
+/* Apparition en cascade */
+.stagger{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.stagger.in{opacity:1;transform:none}
+/* Bouton retour en haut */
+.to-top{position:fixed;right:calc(22px + env(safe-area-inset-right,0px));bottom:calc(92px + env(safe-area-inset-bottom,0px));width:48px;height:48px;border-radius:50%;border:0;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 24px #0003;z-index:40;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:var(--gold);color:var(--navy)}
+.to-top:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+/* Halo qui suit la souris dans les en-têtes */
+.page-hero .glow,.hero .glow{position:absolute;z-index:1;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#e8892b40 0%,#e8892b00 65%);pointer-events:none;transform:translate(-50%,-50%);left:70%;top:40%;transition:left .4s ease-out,top .4s ease-out}
+.page-hero h1 .w{animation-duration:.8s}
+@media(prefers-reduced-motion:reduce){.hero-bg{animation:none}.stagger{opacity:1;transform:none}.progress{display:none}.btn:after{display:none}}

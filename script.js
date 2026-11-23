@@ -74,3 +74,78 @@
     });
   }
 })();
+
+// ===== Effets =====
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // Barre de progression + en-tête resserré + retour en haut
+  var bar = document.createElement('div'); bar.className = 'progress'; bar.setAttribute('aria-hidden', 'true'); document.body.appendChild(bar);
+  var top = document.createElement('button'); top.className = 'to-top'; top.type = 'button'; top.setAttribute('aria-label', 'Revenir en haut de la page');
+  top.innerHTML = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>';
+  top.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+  document.body.appendChild(top);
+  var nav = document.querySelector('.nav'), ticking = false;
+  function onScroll(){
+    var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
+    if (nav) nav.classList.toggle('scrolled', y > 40);
+    top.classList.toggle('show', y > 600);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  // Titre des pages intérieures : mots qui montent un par un
+  var h1 = document.querySelector('.page-hero h1');
+  if (h1 && !reduce) {
+    var text = h1.textContent;
+    h1.setAttribute('aria-label', text);
+    h1.innerHTML = text.split(' ').map(function(w, i){ return '<span class="w" aria-hidden="true" style="animation-delay:' + (0.1 + i * 0.12) + 's">' + w.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span>'; }).join(' ');
+  }
+
+  // Halo qui suit la souris dans les en-têtes
+  [].forEach.call(document.querySelectorAll('.page-hero, .hero'), function(hero){
+    var g = document.createElement('div'); g.className = 'glow'; g.setAttribute('aria-hidden', 'true');
+    hero.insertBefore(g, hero.querySelector('.page-hero-inner, .hero-inner'));
+    if (!fine || reduce) return;
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      g.style.left = (e.clientX - r.left) + 'px'; g.style.top = (e.clientY - r.top) + 'px';
+    });
+  });
+
+  // Apparition en cascade des cartes et photos
+  var groups = '.services, .equipment-grid, .brick-gallery, .gallery, .stats, .fleet, .cat-docs, .pave-card, .brick-points, .footer-grid, .ticks';
+  var items = [];
+  [].forEach.call(document.querySelectorAll(groups), function(g){
+    [].forEach.call(g.children, function(c, i){
+      c.classList.remove('reveal'); c.classList.add('stagger'); c.style.transitionDelay = (i * 90) + 'ms'; items.push(c);
+    });
+  });
+  if (reduce || !('IntersectionObserver' in window)) items.forEach(function(c){ c.classList.add('in'); });
+  else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        en.target.classList.add('in');
+        setTimeout(function(){ en.target.style.transitionDelay = ''; en.target.classList.remove('stagger'); }, 1400);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.1 });
+    items.forEach(function(c){ io.observe(c); });
+  }
+
+  // Cartes en relief qui suivent la souris
+  if (fine && !reduce) {
+    [].forEach.call(document.querySelectorAll('.service, .equip'), function(card){
+      card.classList.add('tilt');
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'perspective(900px) rotateX(' + (-y * 7).toFixed(2) + 'deg) rotateY(' + (x * 7).toFixed(2) + 'deg) translateY(-6px)';
+      });
+      card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+    });
+  }
+})();
