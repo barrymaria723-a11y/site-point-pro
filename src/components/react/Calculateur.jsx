@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { PRODUITS, PAVE, FACE_M2, produit, gnf, nombre } from '../../lib/produits.js';
 import { ajouter } from '../../lib/panier.js';
+import { decimal } from '../../lib/saisie.js';
 
+const MESURES = ['L', 'H', 'O'];
 const MURS = PRODUITS.filter((p) => p.mur);
 
 // '' → null, texte illisible → NaN ; accepte la virgule
@@ -44,7 +46,7 @@ function Mur({ rangs, sol }) {
 
 export default function Calculateur() {
   const [f, setF] = useState({ mode: 'mur', L: '', H: '', O: '', brique: MURS[0].id, modele: PAVE.modeles[0], marge: 5 });
-  const maj = (k) => (e) => setF({ ...f, [k]: k === 'marge' ? +e.target.value : e.target.value });
+  const maj = (k) => (e) => setF({ ...f, [k]: k === 'marge' ? +e.target.value : MESURES.includes(k) ? decimal(e.target.value) : e.target.value });
   const sol = f.mode === 'sol', r = calculer(f);
   const rangs = r.q ? Math.max(1, Math.min(5, Math.ceil(r.q / (sol ? 15 : 120)))) : 0;
   return (
@@ -55,13 +57,13 @@ export default function Calculateur() {
             <label className="who-opt" key={v}><input type="radio" name="ouvrage" value={v} checked={f.mode === v} onChange={maj('mode')} /><span>{t}</span></label>
           ))}
         </div></fieldset>
-        <div className="field"><label htmlFor="cL">LONGUEUR (M)</label><input id="cL" inputMode="decimal" autoComplete="off" placeholder="10" value={f.L} onChange={maj('L')} /></div>
-        <div className="field"><label htmlFor="cH">{sol ? 'LARGEUR (M)' : 'HAUTEUR (M)'}</label><input id="cH" inputMode="decimal" autoComplete="off" placeholder="2,5" value={f.H} onChange={maj('H')} /></div>
+        <div className="field"><label htmlFor="cL">LONGUEUR (M)</label><input id="cL" inputMode="decimal" maxLength={8} autoComplete="off" placeholder="10" value={f.L} onChange={maj('L')} /></div>
+        <div className="field"><label htmlFor="cH">{sol ? 'LARGEUR (M)' : 'HAUTEUR (M)'}</label><input id="cH" inputMode="decimal" maxLength={8} autoComplete="off" placeholder="2,5" value={f.H} onChange={maj('H')} /></div>
         {sol ? (
           <div className="field"><label htmlFor="cP">MODÈLE DE PAVÉ</label><select id="cP" value={f.modele} onChange={maj('modele')}>{PAVE.modeles.map((m) => <option key={m}>{m}</option>)}</select></div>
         ) : (
           <>
-            <div className="field"><label htmlFor="cO">PORTES ET FENÊTRES (M²)</label><input id="cO" inputMode="decimal" autoComplete="off" placeholder="0" value={f.O} onChange={maj('O')} /></div>
+            <div className="field"><label htmlFor="cO">PORTES ET FENÊTRES (M²)</label><input id="cO" inputMode="decimal" maxLength={8} autoComplete="off" placeholder="0" value={f.O} onChange={maj('O')} /></div>
             <div className="field"><label htmlFor="cB">BRIQUE</label><select id="cB" value={f.brique} onChange={maj('brique')}>{MURS.map((p) => <option key={p.id} value={p.id}>{`${p.nom} (${gnf(p.prix)})`}</option>)}</select></div>
           </>
         )}

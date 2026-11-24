@@ -4,15 +4,19 @@ import { $lignes, $ouvert, $total, changer, retirer, vider, initPanier, texteDev
 import { gnf } from '../../lib/produits.js';
 import { enregistrer } from '../../lib/envoi.js';
 import { telephoneValide } from '../../lib/choix.js';
+import { chiffres, decimal, telephone as filtrerTel } from '../../lib/saisie.js';
+
+const ecrire = (q) => String(q).replace('.', ',');
 
 function Ligne({ i, champ }) {
-  const [texte, setTexte] = useState(String(i.q));
+  const [texte, setTexte] = useState(ecrire(i.q));
   const vu = useRef(i.q);
-  useEffect(() => { if (vu.current !== i.q) { vu.current = i.q; setTexte(String(i.q)); } }, [i.q]);
+  useEffect(() => { if (vu.current !== i.q) { vu.current = i.q; setTexte(ecrire(i.q)); } }, [i.q]);
   const idChamp = 'q-' + i.id.replace(/\W/g, '-');
   function saisir(e) {
-    setTexte(e.target.value);
-    const v = i.m2 ? parseFloat(e.target.value) : parseInt(e.target.value, 10);
+    const t = i.m2 ? decimal(e.target.value) : chiffres(e.target.value);
+    setTexte(t);
+    const v = i.m2 ? parseFloat(t.replace(',', '.')) : parseInt(t, 10);
     if (v > 0 && Number.isFinite(v)) { vu.current = v; changer(i.id, v); }
   }
   return (
@@ -22,7 +26,7 @@ function Ligne({ i, champ }) {
         <span>{i.prix ? gnf(i.prix) + (i.m2 ? ' / m²' : ' l’unité') : 'Prix à discuter'}</span>
         <button className="cart-rm" type="button" aria-label={`Retirer ${i.nom}`} onClick={() => retirer(i.id)}>Retirer</button>
       </div>
-      <input id={idChamp} ref={champ} type="number" min="1" step={i.m2 ? 'any' : 1} value={texte} onChange={saisir} onBlur={() => setTexte(String(i.q))} />
+      <input id={idChamp} ref={champ} type="text" inputMode={i.m2 ? 'decimal' : 'numeric'} autoComplete="off" maxLength={8} value={texte} onChange={saisir} onBlur={() => setTexte(ecrire(i.q))} />
       <span className="cart-sub">{i.prix ? gnf(i.prix * i.q) : ''}</span>
     </li>
   );
@@ -41,7 +45,7 @@ export default function Devis() {
   const [c, setC] = useState({ nom: '', telephone: '', site: '' });
   const [etat, setEtat] = useState('');
   const tel = useRef(null);
-  const maj = (k) => (e) => { tel.current?.setCustomValidity(''); setC({ ...c, [k]: e.target.value }); };
+  const maj = (k) => (e) => { tel.current?.setCustomValidity(''); setC({ ...c, [k]: k === 'telephone' ? filtrerTel(e.target.value) : e.target.value }); };
   function envoyer(e) {
     e.preventDefault();
     const telephone = c.telephone.trim(), nom = c.nom.trim();
@@ -63,7 +67,7 @@ export default function Devis() {
           {lignes.length > 0 && <>
             <form className="cart-form" onSubmit={envoyer}>
               <div className="field"><label htmlFor="cartNom">NOM *</label><input id="cartNom" required maxLength={120} autoComplete="name" value={c.nom} onChange={maj('nom')} /></div>
-              <div className="field"><label htmlFor="cartTel">TÉLÉPHONE *</label><input id="cartTel" ref={tel} type="tel" required maxLength={30} autoComplete="tel" value={c.telephone} onChange={maj('telephone')} /></div>
+              <div className="field"><label htmlFor="cartTel">TÉLÉPHONE *</label><input id="cartTel" ref={tel} type="tel" inputMode="tel" required maxLength={25} autoComplete="tel" value={c.telephone} onChange={maj('telephone')} /></div>
               <input className="piege" name="site" tabIndex={-1} autoComplete="off" aria-hidden="true" value={c.site} onChange={maj('site')} />
               <button className="btn cart-send" type="submit">Envoyer sur WhatsApp ↗</button>
             </form>

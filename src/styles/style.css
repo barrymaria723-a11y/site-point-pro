@@ -156,7 +156,10 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .quote-band .wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:30px}
 .quote-band h2{font-size:clamp(27px,4vw,42px);margin:0 0 10px}
 .quote-band p{color:#d7dfe8;margin:0}
-.marquee{overflow:hidden;background:var(--gold);color:var(--navy);padding:7px 0}
+.marquee{overflow:hidden;background:var(--gold);color:var(--navy);padding:9px 0;position:relative}
+.marquee:before,.marquee:after{content:"";position:absolute;left:0;right:0;height:3px;background:radial-gradient(circle,var(--navy) 1.4px,transparent 1.6px) 0 0/9px 3px repeat-x}
+.marquee:before{top:3px}
+.marquee:after{bottom:3px}
 .track{display:flex;width:max-content;animation:marquee 30s linear infinite}
 .track span{font:700 13px Manrope,Arial,sans-serif;letter-spacing:.12em;white-space:nowrap;padding-right:22px;display:inline-flex;align-items:center;gap:22px}
 .track span:after{content:"";width:5px;height:5px;border-radius:50%;background:var(--navy)}
