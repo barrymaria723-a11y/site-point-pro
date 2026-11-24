@@ -1,7 +1,4 @@
 ---
-import Bandeau from '../components/Bandeau.astro';
-import Base from '../layouts/Base.astro';
-import EnTetePage from '../components/EnTetePage.astro';
 import Galerie from '../components/vue/Galerie.vue';
 import Image from '../components/Image.astro';
 
@@ -21,8 +18,6 @@ const FLEET = [
   }
 ];
 ---
-<Base page="location-transport" titre="Location & transport — POINT PRO GUINÉE" description="Engins de chantier, béton, manutention et transport de matériaux.">
-<EnTetePage titre="Location & transport" texte="Engins de chantier, béton, manutention et transport de matériaux." image="transport-camion-benne.jpg" />
 <section class="section dark" id="location"><div class="wrap">
 <div class="section-head reveal"><div class="eyebrow">Location &amp; transport</div><h2>Du matériel et des moyens logistiques pour avancer.</h2><p>Indiquez-nous votre chantier, sa localisation et la durée souhaitée. Notre équipe pourra vous orienter vers la solution adaptée.</p></div>
 <div class="equipment-grid">
@@ -32,5 +27,3 @@ const FLEET = [
 </div>
 <Galerie client:load classe="fleet" images={FLEET} />
 </div></section>
-<Bandeau />
-</Base>

@@ -13,14 +13,14 @@ setTimeout(() => document.querySelector('h1')?.classList.add('words-done'), 2400
 // ----- Apparition au défilement -----
 const GROUPES = '.services, .equipment-grid, .brick-gallery, .gallery, .stats, .fleet, .cat-docs, .brick-points, .footer-grid, .ticks';
 if (!calme) {
-  const attente = new Set(tous('.reveal'));
+  const attente = new Set(tous('.reveal')), cascade = new Set();
   for (const g of tous(GROUPES)) {
     g.closest('.reveal') && attente.delete(g);
-    [...g.children].forEach((c, i) => { c.classList.remove('reveal'); attente.delete(c); c.classList.add('stagger'); c.style.setProperty('--d', `${i * 90}ms`); attente.add(c); });
+    [...g.children].forEach((c, i) => { attente.delete(c); c.style.setProperty('--d', `${i * 90}ms`); attente.add(c); cascade.add(c); });
   }
   const jouer = (el) => {
-    attente.delete(el); el.classList.add('in');
-    setTimeout(() => { el.classList.remove('stagger', 'reveal', 'in'); el.style.removeProperty('--d'); }, 2000);
+    attente.delete(el); el.dataset.anim = cascade.has(el) ? 'pop' : 'in'; // attribut et non classe : React et Vue gardent la main sur leurs classes
+    setTimeout(() => { delete el.dataset.anim; el.style.removeProperty('--d'); }, 2000);
   };
   const verifier = () => { for (const el of attente) { const r = el.getBoundingClientRect(); if (r.width && r.top < innerHeight - 10 && r.bottom > 0) jouer(el); } };
   verifier();
@@ -29,7 +29,7 @@ if (!calme) {
   const veille = setInterval(() => { verifier(); if (!attente.size) clearInterval(veille); }, 400);
 }
 
-// ----- Barre de progression, en-tête resserré, retour en haut, parallaxe -----
+// ----- Barre de progression, retour en haut, parallaxe -----
 const barre = creer('div', 'progress'); barre.setAttribute('aria-hidden', 'true');
 const haut = creer('button', 'to-top'); haut.type = 'button'; haut.setAttribute('aria-label', 'Revenir en haut de la page');
 haut.innerHTML = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>';
@@ -41,7 +41,6 @@ function defile() {
   prevu = false;
   const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
   barre.style.transform = `scaleX(${h > 0 ? Math.min(1, y / h) : 0})`;
-  document.querySelector('.nav')?.classList.toggle('scrolled', y > 40);
   haut.classList.toggle('show', y > 600);
   if (y < 900) for (const t of tetes) { t.style.transform = `translateY(${(y * 0.25).toFixed(1)}px)`; t.style.opacity = Math.max(0, 1 - y / 700).toFixed(2); }
 }
@@ -99,3 +98,9 @@ if (hero && !calme) {
 
 // ----- Photos hors écran : chargées après le reste, sauf en mode économie de données -----
 addEventListener('load', () => setTimeout(() => { if (!navigator.connection?.saveData) tous('img[loading="lazy"]').forEach((i) => { i.loading = 'eager'; }); }, 800));
+
+// ----- Arrivée sur une adresse du type /#tarifs : aller droit à la bonne partie, sans défilement animé -----
+if (location.hash.length > 1) {
+  const cible = document.getElementById(location.hash.slice(1));
+  if (cible) { cible.scrollIntoView({ behavior: 'instant' }); addEventListener('load', () => cible.scrollIntoView({ behavior: 'instant' }), { once: true }); }
+}

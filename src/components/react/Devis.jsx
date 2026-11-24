@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { $lignes, $ouvert, $total, changer, retirer, vider, initPanier, texteDevis, envoyerWhatsApp } from '../../lib/panier.js';
 import { gnf } from '../../lib/produits.js';
+import { enregistrer } from '../../lib/envoi.js';
+import { telephoneValide } from '../../lib/choix.js';
 
 function Ligne({ i, champ }) {
   const [texte, setTexte] = useState(String(i.q));
@@ -36,6 +38,19 @@ export default function Devis() {
     if (!d.open) d.showModal();
     champs.current[ouvert]?.focus(); champs.current[ouvert]?.select();
   }, [ouvert]);
+  const [c, setC] = useState({ nom: '', telephone: '', site: '' });
+  const [etat, setEtat] = useState('');
+  const tel = useRef(null);
+  const maj = (k) => (e) => { tel.current?.setCustomValidity(''); setC({ ...c, [k]: e.target.value }); };
+  function envoyer(e) {
+    e.preventDefault();
+    const telephone = c.telephone.trim(), nom = c.nom.trim();
+    tel.current.setCustomValidity(telephoneValide(telephone) ? '' : 'Entrez un numéro de téléphone valide, par exemple 620 00 00 00.');
+    if (!tel.current.reportValidity()) return;
+    setEtat('');
+    enregistrer({ nom, telephone, site: c.site }).then((ok) => setEtat(ok ? 'Votre demande est enregistrée. Envoyez aussi le message WhatsApp pour une réponse plus rapide.' : 'Envoyez bien le message WhatsApp : c’est lui qui nous transmet votre demande.'));
+    envoyerWhatsApp(`Bonjour POINT PRO GUINÉE, je souhaite un devis.\nNom : ${nom}\nTéléphone : ${telephone}\n\nProduits :\n${texteDevis()}`);
+  }
   const fermer = () => $ouvert.set(null);
   return (
     <>
@@ -46,8 +61,14 @@ export default function Devis() {
         <div className="cart-foot">
           <p className="cart-sum" aria-live="polite">{lignes.length ? `Total estimé : ${total}` : 'Votre devis est vide. Ajoutez des produits depuis la page Tarifs.'}</p>
           {lignes.length > 0 && <>
-            <button className="btn cart-send" type="button" onClick={() => envoyerWhatsApp(`Bonjour POINT PRO GUINÉE, je souhaite un devis pour :\n${texteDevis()}`)}>Envoyer sur WhatsApp ↗</button>
-            <p className="cart-note">Hors livraison. Vous pourrez relire le message avant l’envoi.</p>
+            <form className="cart-form" onSubmit={envoyer}>
+              <div className="field"><label htmlFor="cartNom">NOM *</label><input id="cartNom" required maxLength={120} autoComplete="name" value={c.nom} onChange={maj('nom')} /></div>
+              <div className="field"><label htmlFor="cartTel">TÉLÉPHONE *</label><input id="cartTel" ref={tel} type="tel" required maxLength={30} autoComplete="tel" value={c.telephone} onChange={maj('telephone')} /></div>
+              <input className="piege" name="site" tabIndex={-1} autoComplete="off" aria-hidden="true" value={c.site} onChange={maj('site')} />
+              <button className="btn cart-send" type="submit">Envoyer sur WhatsApp ↗</button>
+            </form>
+            {etat && <p className="etat" role="status">{etat}</p>}
+            <p className="cart-note">Hors livraison. Vos coordonnées sont enregistrées pour traiter votre demande. Vous relirez le message avant l’envoi.</p>
             <button className="cart-clear" type="button" onClick={() => { vider(); fermer(); }}>Vider le devis</button>
           </>}
         </div>

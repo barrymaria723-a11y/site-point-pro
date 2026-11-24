@@ -1,0 +1,110 @@
+---
+import { sql, autoriser, liberer } from '../server/base.js';
+import { adminPret, bonMotDePasse, connecte, empreinte, fermerSession, ouvrirSession } from '../server/securite.js';
+import { STATUTS } from '../lib/choix.js';
+import { gnf, nombre } from '../lib/produits.js';
+
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'no-store');
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+Astro.response.headers.set('X-Frame-Options', 'DENY');
+Astro.response.headers.set('Referrer-Policy', 'same-origin');
+
+const PAR_PAGE = 50, UUID = /^[0-9a-f-]{36}$/i;
+const prete = adminPret();
+let erreur = '', session = connecte(Astro.cookies);
+const p = Astro.url.searchParams;
+const filtre = Object.hasOwn(STATUTS, p.get('statut') ?? '') ? p.get('statut') : '';
+const page = Math.max(1, Math.min(10000, parseInt(p.get('page') ?? '1', 10) || 1));
+const adresse = (s, n = 1) => '/admin' + (s || n > 1 ? '?' + new URLSearchParams({ ...(s && { statut: s }), ...(n > 1 && { page: n }) }) : '');
+
+let devis = [], totaux = {}, total = 0;
+try {
+  if (Astro.request.method === 'POST' && prete) {
+    const f = await Astro.request.formData(), action = f.get('action'), id = String(f.get('id') ?? '');
+    if (action === 'connexion') {
+      const cle = empreinte('admin', Astro.clientAddress);
+      if (!(await autoriser(cle, 5, 900)) || !(await autoriser('admin:tous', 50, 900))) { erreur = 'Trop d’essais. Réessayez dans 15 minutes.'; Astro.response.status = 429; }
+      else if (bonMotDePasse(f.get('mdp') ?? '')) { await liberer(cle); ouvrirSession(Astro.cookies); return Astro.redirect('/admin', 303); }
+      else { erreur = 'Mot de passe incorrect.'; Astro.response.status = 401; }
+    } else if (!session) { erreur = 'Votre session est terminée. Reconnectez-vous.'; Astro.response.status = 401; }
+    else if (action === 'deconnexion') { fermerSession(Astro.cookies); return Astro.redirect('/admin', 303); }
+    else if (UUID.test(id)) {
+      if (action === 'modifier' && Object.hasOwn(STATUTS, String(f.get('statut')))) await sql('update devis set statut = $2, note = $3 where id = $1', [id, f.get('statut'), String(f.get('note') ?? '').slice(0, 1000)]);
+      if (action === 'supprimer') await sql('delete from devis where id = $1', [id]);
+      return Astro.redirect(adresse(filtre, page), 303);
+    }
+  }
+  if (session) {
+    for (const l of await sql('select statut, count(*)::int as n from devis group by statut')) totaux[l.statut] = l.n;
+    total = filtre ? totaux[filtre] ?? 0 : Object.values(totaux).reduce((a, b) => a + b, 0);
+    devis = await sql(`select * from devis ${filtre ? 'where statut = $3' : ''} order by cree_le desc limit $1 offset $2`, [PAR_PAGE, (page - 1) * PAR_PAGE, ...(filtre ? [filtre] : [])]);
+  }
+} catch (e) {
+  console.error('admin :', e.message);
+  erreur = 'La base de données ne répond pas. Réessayez dans un instant.'; Astro.response.status = 503;
+}
+const date = (d) => new Date(d).toLocaleString('fr-FR', { timeZone: 'Africa/Conakry', dateStyle: 'medium', timeStyle: 'short' });
+// Numéro guinéen à 9 chiffres : on ajoute l'indicatif pour WhatsApp
+const wa = (t) => { const n = t.replace(/\D/g, '').replace(/^00/, ''); return 'https://wa.me/' + (n.length === 9 ? '224' + n : n); };
+---
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Demandes de devis — POINT PRO</title><link rel="icon" type="image/png" href="/images/logo-embleme.png">
+</head>
+<body>
+{!session ? (
+<main class="entree">
+<img src="/images/logo-embleme.png" alt="" width="64" height="64">
+<h1>Demandes de devis</h1>
+{erreur && <p class="erreur" role="alert">{erreur}</p>}
+{prete ? (
+<form method="post"><input type="hidden" name="action" value="connexion"><label for="mdp">Mot de passe</label><input id="mdp" name="mdp" type="password" required autocomplete="current-password"><button class="plein">Se connecter</button></form>
+) : <p class="erreur">Cette page n’est pas encore configurée : ajoutez ADMIN_MOT_DE_PASSE (12 caractères minimum) et SESSION_SECRET (32 minimum) dans Vercel.</p>}
+</main>
+) : (
+<>
+<header><h1>Demandes de devis</h1><form method="post"><input type="hidden" name="action" value="deconnexion"><button>Se déconnecter</button></form></header>
+<main>
+{erreur && <p class="erreur" role="alert">{erreur}</p>}
+<nav aria-label="Filtrer par statut"><a href="/admin" aria-current={!filtre ? 'page' : undefined}>Toutes ({Object.values(totaux).reduce((a, b) => a + b, 0)})</a>{Object.entries(STATUTS).map(([k, v]) => <a href={adresse(k)} aria-current={filtre === k ? 'page' : undefined}>{v} ({totaux[k] ?? 0})</a>)}</nav>
+{!devis.length && !erreur && <p class="vide">Aucune demande pour l’instant. Les demandes envoyées depuis le site apparaîtront ici.</p>}
+{devis.map((d) => (
+<article>
+<div class="tete"><div><h2>{d.nom}{d.entreprise && ` (${d.entreprise})`}</h2><p>{date(d.cree_le)}{d.ville && ` · ${d.ville}`}{d.service && ` · ${d.service}`}</p></div><span class={`statut ${d.statut}`}>{STATUTS[d.statut]}</span></div>
+<p class="liens"><a href={`tel:${d.telephone.replace(/[^\d+]/g, '')}`}>{d.telephone}</a><a href={wa(d.telephone)} target="_blank" rel="noopener noreferrer">Répondre sur WhatsApp ↗</a></p>
+{d.besoin && <p class="besoin">{d.besoin}</p>}
+{d.lignes.length > 0 && <ul>{d.lignes.map((l) => <li><span>{l.nom} : {nombre(l.q)}{l.m2 ? ' m²' : ''}</span><span>{l.prix ? gnf(l.prix * l.q) : 'à chiffrer'}</span></li>)}<li class="somme"><span>Total estimé hors livraison</span><span>{gnf(Number(d.total))}{d.a_chiffrer && ' + à chiffrer'}</span></li></ul>}
+<form method="post" class="suivi"><input type="hidden" name="action" value="modifier"><input type="hidden" name="id" value={d.id}>
+<label>Statut<select name="statut">{Object.entries(STATUTS).map(([k, v]) => <option value={k} selected={d.statut === k}>{v}</option>)}</select></label>
+<label class="large">Note<input name="note" maxlength="1000" value={d.note} placeholder="Ex. rappeler lundi"></label><button class="plein">Enregistrer</button></form>
+<details><summary>Supprimer</summary><form method="post"><input type="hidden" name="action" value="supprimer"><input type="hidden" name="id" value={d.id}><p>La demande sera effacée définitivement.</p><button class="danger">Supprimer la demande de {d.nom}</button></form></details>
+</article>
+))}
+{total > PAR_PAGE && <nav aria-label="Pages">{page > 1 && <a href={adresse(filtre, page - 1)}>Plus récentes</a>}{page * PAR_PAGE < total && <a href={adresse(filtre, page + 1)}>Plus anciennes</a>}</nav>}
+</main>
+</>
+)}
+<style>
+*{box-sizing:border-box}body{margin:0;background:#F2F3F5;color:#172334;font:16px/1.5 'DM Sans',system-ui,sans-serif}
+h1{font-size:22px;margin:0}h2{font-size:18px;margin:0;color:#13295C;overflow-wrap:anywhere}p{margin:0}
+header{background:#0B1838;color:#fff;padding:14px max(16px,calc(50% - 440px));display:flex;justify-content:space-between;align-items:center;gap:12px}
+header button{background:none;color:#fff;border-color:#ffffff60}
+main{max-width:880px;margin:0 auto;padding:20px 16px 60px;display:grid;gap:14px}
+.entree{max-width:400px;padding-top:12vh}.entree img{border-radius:14px}.entree form{display:grid;gap:10px}
+nav{display:flex;flex-wrap:wrap;gap:8px}nav a{padding:8px 14px;border-radius:99px;background:#fff;border:1px solid #cfd4da;color:inherit;text-decoration:none;font-weight:600;font-size:14px}nav a[aria-current]{background:#13295C;border-color:#13295C;color:#fff}
+article{background:#fff;border:1px solid #e0e3e7;border-radius:12px;padding:18px;display:grid;gap:12px}
+.tete{display:flex;justify-content:space-between;gap:12px;align-items:start}.tete p{color:#5d6a7b;font-size:14px}
+.statut{font-size:13px;font-weight:700;padding:4px 12px;border-radius:99px;background:#e6e7e8;white-space:nowrap}.statut.nouveau{background:#FDE7CF;color:#8a430a}.statut.rappele{background:#DDE6F8;color:#13295C}.statut.vendu{background:#DDF1E4;color:#0f5b30}
+.liens{display:flex;flex-wrap:wrap;gap:6px 18px}.liens a{color:#13295C;font-weight:700}.besoin{white-space:pre-wrap;overflow-wrap:anywhere}
+ul{list-style:none;margin:0;padding:10px 14px;background:#F2F3F5;border-radius:8px;font-size:15px}li{display:flex;justify-content:space-between;gap:12px;padding:3px 0}li span:last-child{white-space:nowrap}.somme{font-weight:700;border-top:1px solid #cfd4da;margin-top:5px;padding-top:7px}
+.suivi{display:flex;flex-wrap:wrap;gap:10px;align-items:end}label{font-size:14px;font-weight:600;display:grid;gap:4px}.large{flex:1 1 220px}
+input,select{font:inherit;padding:10px 12px;border:1px solid #cfd4da;border-radius:7px;background:#fff;width:100%;color:inherit}
+button{font:inherit;font-weight:700;min-height:44px;padding:8px 16px;border-radius:7px;border:1px solid #13295C;background:#fff;color:#13295C;cursor:pointer}.plein{background:#13295C;color:#fff}.danger{background:#a3261b;border-color:#a3261b;color:#fff;margin-top:8px}
+summary{cursor:pointer;color:#5d6a7b;font-size:14px;width:max-content}details p{font-size:14px;margin-top:6px}.erreur{background:#FBE5E2;color:#8a1c12;padding:12px 14px;border-radius:8px}.vide{color:#5d6a7b;padding:30px 0;text-align:center}
+:focus-visible{outline:3px solid #E8892B;outline-offset:2px}
+</style>
+</body>
+</html>

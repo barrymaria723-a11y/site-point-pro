@@ -1,14 +1,9 @@
 ---
-import Base from '../layouts/Base.astro';
-import EnTetePage from '../components/EnTetePage.astro';
 import Formulaire from '../components/vue/Formulaire.vue';
 ---
-<Base page="contact" titre="Contact & devis — POINT PRO GUINÉE" description="Décrivez votre besoin : votre demande arrive directement sur notre WhatsApp.">
-<EnTetePage titre="Contact & devis" texte="Décrivez votre besoin : votre demande arrive directement sur notre WhatsApp." image="transport-semi-remorque.jpg" />
 <section class="section soft" id="contact"><div class="wrap">
 <div class="section-head reveal"><div class="eyebrow">Contact &amp; devis</div><h2>Parlons de votre projet.</h2><p>Décrivez votre besoin : notre équipe recevra votre demande directement sur WhatsApp.</p></div>
 <div class="contact-grid contact-solo">
 <div class="reveal"><Formulaire client:load /></div>
 </div>
 </div></section>
-</Base>

@@ -1,7 +1,4 @@
 ---
-import Bandeau from '../components/Bandeau.astro';
-import Base from '../layouts/Base.astro';
-import EnTetePage from '../components/EnTetePage.astro';
 import Galerie from '../components/vue/Galerie.vue';
 import Image from '../components/Image.astro';
 
@@ -59,21 +56,17 @@ const BRICK_GALLERY = [
   }
 ];
 ---
-<Base page="briqueterie" titre="Briqueterie — POINT PRO GUINÉE" description="Parpaings, dallettes et bordures fabriqués chaque jour, jusqu’à 5 000 briques.">
-<EnTetePage titre="Briqueterie" texte="Parpaings, dallettes et bordures fabriqués chaque jour, jusqu’à 5 000 briques." image="briqueterie-parc-stockage.jpg" />
-<section class="section dark" id="materiaux"><div class="wrap brick-grid">
+<section class="section dark" id="briqueterie"><div class="wrap brick-grid">
 <div class="brick-photo reveal"><Image src="briqueterie-parc-stockage.jpg" alt="Parc de stockage de la briqueterie : parpaings sur palettes" style="object-position:center 42%" loading="lazy" /><span>Notre parc de stockage</span></div>
 <div class="reveal">
 <div class="eyebrow">Notre briqueterie</div>
 <h2 class="brick-title">Des matériaux conçus pour vos ouvrages.</h2>
 <p class="brick-text">Notre unité de production fabrique des parpaings et propose également des dallettes et des bordures de trottoir. Nous commercialisons aussi du ciment, du fer à béton et divers matériaux de construction.</p>
 <div class="brick-points"><div><strong>5 000 / jour</strong><span>Capacité de production</span></div><div><strong>Parpaings</strong><span>Pour vos murs et ouvrages</span></div><div><strong>Dallettes</strong><span>Pour vos aménagements</span></div><div><strong>Bordures</strong><span>Pour vos voiries et trottoirs</span></div></div>
-<a class="btn" href="/tarifs.html">Voir les tarifs ↗</a> <a class="btn outline" href="/tarifs.html#calculateur">Calculer mes briques</a> <a class="btn outline" href="/contact.html">Commander</a>
+<a class="btn" href="/#tarifs">Voir les tarifs ↗</a> <a class="btn outline" href="/#calculateur">Calculer mes briques</a> <a class="btn outline" href="/#contact">Commander</a>
 </div>
 </div><div class="wrap brick-gallery-wrap reveal">
 <div class="brick-gallery-head"><div><div class="eyebrow">Notre production en images</div><h3>Parpaings, briques et pavés fabriqués par POINT PRO.</h3></div><p>Du moule de la pondeuse au parc de stockage : chaque bloc est contrôlé avant d’être livré sur votre chantier.</p></div>
 <Galerie client:load classe="brick-gallery" images={BRICK_GALLERY} />
 </div>
 </section>
-<Bandeau />
-</Base>

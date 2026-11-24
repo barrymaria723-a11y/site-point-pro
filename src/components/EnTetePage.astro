@@ -1,9 +1,0 @@
----
-import Image from './Image.astro';
-const { titre, texte, image } = Astro.props;
----
-<section class="page-hero"><Image src={image} class="hero-bg" aria-hidden="true" /><div class="page-hero-inner">
-<nav class="crumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">{titre}</span></nav>
-<h1 aria-label={titre}>{titre.split(' ').map((m, i) => <><span class="w" aria-hidden="true" style={`animation-delay:${(0.1 + i * 0.12).toFixed(2)}s`}>{m}</span>{' '}</>)}</h1>
-<p>{texte}</p>
-</div></section>

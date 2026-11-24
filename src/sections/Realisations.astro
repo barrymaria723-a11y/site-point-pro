@@ -1,7 +1,4 @@
 ---
-import Bandeau from '../components/Bandeau.astro';
-import Base from '../layouts/Base.astro';
-import EnTetePage from '../components/EnTetePage.astro';
 import Galerie from '../components/vue/Galerie.vue';
 
 const GALLERY = [
@@ -34,11 +31,7 @@ const GALLERY = [
   }
 ];
 ---
-<Base page="realisations" titre="Réalisations — POINT PRO GUINÉE" description="Nos chantiers, nos engins et notre production, sur le terrain.">
-<EnTetePage titre="Réalisations" texte="Nos chantiers, nos engins et notre production, sur le terrain." image="parpaings-sortie-pondeuse.jpg" />
 <section class="section" id="realisations"><div class="wrap">
 <div class="section-head reveal"><div class="eyebrow">Sur le terrain</div><h2>La force du concret.</h2><p>Nos chantiers, nos engins et notre production. Cette galerie s’enrichira au fil de nos réalisations.</p></div>
 <Galerie client:load classe="gallery" images={GALLERY} />
 </div></section>
-<Bandeau />
-</Base>
