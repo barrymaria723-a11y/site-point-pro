@@ -1,0 +1,6 @@
+---
+import Image from './Image.astro';
+---
+<section class="quote-band"><Image src="briques.png" aria-hidden="true" loading="lazy" /><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div>
+<svg class="truck" aria-hidden="true" viewBox="0 0 120 52" fill="currentColor"><g class="body"><path d="M4 12h70v24H4z" opacity=".35"/><path d="M8 4h14v7H8zM24 4h14v7H24zM40 4h14v7H40zM56 4h14v7H56zM8 13h14v7H8zM24 13h14v7H24zM40 13h14v7H40zM56 13h14v7H56z"/><path d="M78 14h20l14 12v12H78zM84 18v9h20l-9-9z" fill-rule="evenodd"/><path d="M2 37h110v4H2z"/></g>{[22, 58, 96].map((x) => <g class="wheel"><circle cx={x} cy="43" r="8"/><path d={`M${x} 37v12M${x - 6} 43h12`} stroke="#13295C" stroke-width="2"/></g>)}</svg>
+</section>

@@ -1,0 +1,36 @@
+---
+import Bandeau from '../components/Bandeau.astro';
+import Base from '../layouts/Base.astro';
+import EnTetePage from '../components/EnTetePage.astro';
+import Galerie from '../components/vue/Galerie.vue';
+import Image from '../components/Image.astro';
+
+const FLEET = [
+  {
+    "src": "transport-camion-benne.jpg",
+    "alt": "Camion benne chargé de parpaings sur le site de la briqueterie",
+    "gras": "Camion benne",
+    "texte": "livraison de parpaings depuis la briqueterie"
+  },
+  {
+    "src": "transport-semi-remorque.jpg",
+    "alt": "Tracteur et semi-remorque transportant un conteneur au port",
+    "gras": "Semi-remorque",
+    "texte": "transport de conteneurs et de charges lourdes",
+    "style": "object-position:center 40%"
+  }
+];
+---
+<Base page="location-transport" titre="Location & transport — POINT PRO GUINÉE" description="Engins de chantier, béton, manutention et transport de matériaux.">
+<EnTetePage titre="Location & transport" texte="Engins de chantier, béton, manutention et transport de matériaux." image="transport-camion-benne.jpg" />
+<section class="section dark" id="location"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Location &amp; transport</div><h2>Du matériel et des moyens logistiques pour avancer.</h2><p>Indiquez-nous votre chantier, sa localisation et la durée souhaitée. Notre équipe pourra vous orienter vers la solution adaptée.</p></div>
+<div class="equipment-grid">
+<article class="equip reveal"><div class="equip-visual photo"><Image src="location-engins.jpg" alt="Pelle mécanique, compacteur, chargeuse, camion benne et toupie à béton sur un chantier" loading="lazy" style="object-position:30% center" /></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Engins de chantier</h3><p>Poclain, compacteur et équipements pour vos travaux de terrassement et préparation.</p></div></article>
+<article class="equip reveal"><div class="equip-visual photo"><Image src="location-betonniere.jpg" alt="Ouvrier versant le béton d’une bétonnière sur un chantier" loading="lazy" style="object-position:45% center" /></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Béton &amp; manutention</h3><p>Bétonnières, pompes à béton et chariots élévateurs selon disponibilité.</p></div></article>
+<article class="equip reveal" id="transport"><div class="equip-visual photo"><Image src="transport-camion-benne.jpg" alt="Camion benne POINT PRO chargé de parpaings" loading="lazy" style="object-position:center 60%" /></div><div class="equip-body"><span class="equip-tag">Transport</span><h3>Transport de matériaux &amp; engins</h3><p>Camions bennes, porte-chars et semi-plateaux pour vos opérations logistiques.</p></div></article>
+</div>
+<Galerie client:load classe="fleet" images={FLEET} />
+</div></section>
+<Bandeau />
+</Base>

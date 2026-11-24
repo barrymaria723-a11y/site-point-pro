@@ -1,0 +1,79 @@
+---
+import Bandeau from '../components/Bandeau.astro';
+import Base from '../layouts/Base.astro';
+import EnTetePage from '../components/EnTetePage.astro';
+import Galerie from '../components/vue/Galerie.vue';
+import Image from '../components/Image.astro';
+
+const BRICK_GALLERY = [
+  {
+    "src": "briqueterie-parc-stockage.jpg",
+    "alt": "Parc de stockage : parpaings sur palettes, prêts à livrer",
+    "texte": "Parc de stockage : parpaings sur palettes, prêts à livrer"
+  },
+  {
+    "src": "pondeuse-production.jpg",
+    "alt": "La pondeuse en pleine production",
+    "texte": "La pondeuse en pleine production"
+  },
+  {
+    "src": "parpaings-sortie-pondeuse.jpg",
+    "alt": "Parpaings creux à la sortie de la pondeuse",
+    "texte": "Parpaings creux à la sortie de la pondeuse"
+  },
+  {
+    "src": "parpaings-sur-palette.jpg",
+    "alt": "Parpaings creux avant séchage",
+    "texte": "Parpaings creux avant séchage"
+  },
+  {
+    "src": "briques-10-creux.jpg",
+    "alt": "Briques 10 creux pour cloisons légères",
+    "texte": "Briques 10 creux pour cloisons légères"
+  },
+  {
+    "src": "briqueterie-stock-hangar.jpg",
+    "alt": "Parpaings empilés sous le hangar de séchage de la briqueterie",
+    "texte": "Stock de parpaings sous le hangar de séchage",
+    "grand": true
+  },
+  {
+    "src": "blocs-creux-alveoles.jpg",
+    "alt": "Blocs creux à deux alvéoles",
+    "texte": "Blocs creux à deux alvéoles"
+  },
+  {
+    "src": "bloc-creux-mesure.jpg",
+    "alt": "Bloc creux de 40 cm de long",
+    "texte": "Bloc creux de 40 cm de long"
+  },
+  {
+    "src": "paves-sortie-presse.jpg",
+    "alt": "Pavés en sortie de presse",
+    "texte": "Pavés en sortie de presse"
+  },
+  {
+    "src": "paves-mesure.jpg",
+    "alt": "Pavés : contrôle des dimensions",
+    "texte": "Pavés : contrôle des dimensions"
+  }
+];
+---
+<Base page="briqueterie" titre="Briqueterie — POINT PRO GUINÉE" description="Parpaings, dallettes et bordures fabriqués chaque jour, jusqu’à 5 000 briques.">
+<EnTetePage titre="Briqueterie" texte="Parpaings, dallettes et bordures fabriqués chaque jour, jusqu’à 5 000 briques." image="briqueterie-parc-stockage.jpg" />
+<section class="section dark" id="materiaux"><div class="wrap brick-grid">
+<div class="brick-photo reveal"><Image src="briqueterie-parc-stockage.jpg" alt="Parc de stockage de la briqueterie : parpaings sur palettes" style="object-position:center 42%" loading="lazy" /><span>Notre parc de stockage</span></div>
+<div class="reveal">
+<div class="eyebrow">Notre briqueterie</div>
+<h2 class="brick-title">Des matériaux conçus pour vos ouvrages.</h2>
+<p class="brick-text">Notre unité de production fabrique des parpaings et propose également des dallettes et des bordures de trottoir. Nous commercialisons aussi du ciment, du fer à béton et divers matériaux de construction.</p>
+<div class="brick-points"><div><strong>5 000 / jour</strong><span>Capacité de production</span></div><div><strong>Parpaings</strong><span>Pour vos murs et ouvrages</span></div><div><strong>Dallettes</strong><span>Pour vos aménagements</span></div><div><strong>Bordures</strong><span>Pour vos voiries et trottoirs</span></div></div>
+<a class="btn" href="/tarifs.html">Voir les tarifs ↗</a> <a class="btn outline" href="/tarifs.html#calculateur">Calculer mes briques</a> <a class="btn outline" href="/contact.html">Commander</a>
+</div>
+</div><div class="wrap brick-gallery-wrap reveal">
+<div class="brick-gallery-head"><div><div class="eyebrow">Notre production en images</div><h3>Parpaings, briques et pavés fabriqués par POINT PRO.</h3></div><p>Du moule de la pondeuse au parc de stockage : chaque bloc est contrôlé avant d’être livré sur votre chantier.</p></div>
+<Galerie client:load classe="brick-gallery" images={BRICK_GALLERY} />
+</div>
+</section>
+<Bandeau />
+</Base>
