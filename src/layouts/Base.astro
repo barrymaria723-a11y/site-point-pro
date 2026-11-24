@@ -4,7 +4,7 @@ import Image from '../components/Image.astro';
 import Entete from '../components/vue/Entete.vue';
 import Devis from '../components/react/Devis.jsx';
 const { titre, description, noindex = false } = Astro.props;
-const SITE = 'https://site-point-pro.vercel.app/';
+const SITE = Astro.site.href;
 const url = SITE;
 const fiche = {
   '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness', name: 'POINT PRO GUINÉE', slogan: 'On construit vos ambitions',
