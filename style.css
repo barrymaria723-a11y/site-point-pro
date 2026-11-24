@@ -382,3 +382,15 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .footer{padding-top:36px}
 .copyright{margin-top:24px}
 @media(max-width:560px){.section{padding:30px 6%}.page-hero{padding:22px 6% 18px}.page-hero + .section{padding-top:20px}.intro-copy h2{font-size:28px}}
+
+/* ===== Cartes plus compactes (Nos activités) ===== */
+.services{gap:14px}
+.service{padding:18px 18px 16px;border-radius:12px}
+.service .num{font-size:11px}
+.service .symbol{width:42px;height:42px;border-radius:10px;margin:12px 0 10px}
+.service .symbol svg{width:22px;height:22px}
+.service h3{font-size:17px;margin:0 0 6px}
+.service p{font-size:13.5px;line-height:1.55;margin:0 0 10px}
+.more{font-size:12.5px}
+.section-head p{font-size:15px}
+.section-head{max-width:860px}
