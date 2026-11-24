@@ -408,19 +408,3 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .brick-gallery-head h3{font-size:clamp(20px,2.2vw,26px);margin-top:6px}
 .brick-gallery-head p{font-size:14px}
 @media(max-width:900px){.brick-gallery{grid-auto-rows:160px}}
-
-/* ===== Tarifs plus compacts + bouton WhatsApp plus bas ===== */
-.tabs{gap:8px;margin-bottom:14px}
-.tab{min-height:38px;padding:0 15px;font-size:13px}
-.price-table{font-size:14px}
-.price-table th{padding:10px 14px;font-size:11px}
-.price-table td{padding:8px 14px;line-height:1.4}
-.price-table .ref{display:inline;margin:0 0 0 6px;font-size:11.5px}
-.price-table .price{font-size:15px}
-.pave{padding:16px}
-.pave .big{font-size:24px}
-.cat-doc{padding:8px}
-.cat-doc img{width:70px;height:70px}
-.note{margin-top:10px}
-.wa{bottom:calc(12px + env(safe-area-inset-bottom,0px));right:calc(14px + env(safe-area-inset-right,0px));padding:10px 14px;font-size:13px}
-.to-top{bottom:calc(66px + env(safe-area-inset-bottom,0px));right:calc(18px + env(safe-area-inset-right,0px));width:42px;height:42px}
