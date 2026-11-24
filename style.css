@@ -394,3 +394,17 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .more{font-size:12.5px}
 .section-head p{font-size:15px}
 .section-head{max-width:860px}
+
+/* ===== Briqueterie plus compacte ===== */
+.brick-grid{gap:36px;align-items:start}
+.brick-title{font:800 clamp(24px,2.6vw,34px) Manrope,Arial,sans-serif;line-height:1.15;letter-spacing:-.03em;margin:8px 0}
+.brick-text{color:#c1cbd5;line-height:1.6;font-size:15px;margin:8px 0}
+.brick-photo{height:300px}
+.brick-points{gap:10px;margin:12px 0}
+.brick-points div{padding:11px 14px}
+.brick-points strong{font-size:15px;margin-bottom:2px}
+.brick-points span{font-size:12.5px}
+.brick-gallery{grid-auto-rows:180px;gap:10px}
+.brick-gallery-head h3{font-size:clamp(20px,2.2vw,26px);margin-top:6px}
+.brick-gallery-head p{font-size:14px}
+@media(max-width:900px){.brick-gallery{grid-auto-rows:160px}}
