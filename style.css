@@ -354,3 +354,31 @@ h1{font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-.045em;margin
 .cat-docs{margin-top:20px}
 .footer{padding-top:44px}
 @media(max-width:560px){.section{padding:44px 6%}.page-hero{padding:36px 6% 30px}.page-hero + .section{padding-top:32px}}
+
+/* ===== Encore plus compact ===== */
+.page-hero{padding:26px 8% 22px}
+.page-hero h1{font-size:clamp(28px,3.4vw,40px);margin:4px 0 4px}
+.page-hero p{font-size:15px;line-height:1.5}
+.crumbs{font-size:12px}
+.section{padding:36px 8%}
+.page-hero + .section{padding-top:24px}
+.section-head{margin-bottom:18px}
+.section-head h2{font-size:clamp(26px,3vw,36px);margin:6px 0}
+.section-head p{line-height:1.6}
+.intro-grid{gap:36px}
+.intro-copy h2{font-size:34px;margin:6px 0}
+.intro-copy p{margin:6px 0;line-height:1.7}
+.ticks{margin:10px 0}
+.ticks li{padding:5px 0 5px 30px}
+.ticks li svg{top:7px}
+.photo-card{min-height:300px}
+.stats{margin-top:28px;padding:20px}
+.brick-gallery-wrap{margin-top:28px}
+.brick-gallery-head{margin-bottom:16px}
+.brick-photo{height:330px}
+.brick-points{margin:16px 0}
+.quote-band{padding:32px 8%}
+.fleet{margin-top:12px}
+.footer{padding-top:36px}
+.copyright{margin-top:24px}
+@media(max-width:560px){.section{padding:30px 6%}.page-hero{padding:22px 6% 18px}.page-hero + .section{padding-top:20px}.intro-copy h2{font-size:28px}}
