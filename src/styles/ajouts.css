@@ -127,3 +127,11 @@ astro-island{display:contents}
 .hero{align-items:flex-start;padding-top:44px;min-height:600px}
 .hero h1{margin:14px 0}
 @media(max-width:560px){.hero{padding-top:36px;min-height:0}}
+
+/* Pages intérieures : contenu remonté */
+.page-hero + .section{padding-top:14px}
+.section-head{margin-bottom:14px}
+.section-head .eyebrow{margin-top:0}
+.section-head h2{margin:6px 0}
+#location .equip-visual{height:150px}
+@media(max-width:560px){.page-hero + .section{padding-top:12px}}
