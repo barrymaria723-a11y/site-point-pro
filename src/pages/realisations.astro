@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Camion from '../components/Camion.astro';
+---
+<Base page="realisations" titre="Réalisations — POINT PRO GUINÉE" description="Nos chantiers, nos engins et notre production, sur le terrain.">
+<section class="page-hero"><picture><source type="image/avif" srcset="/images/parpaings-sortie-pondeuse.avif"><img class="hero-bg" src="/images/parpaings-sortie-pondeuse.jpg" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
+<nav class="crumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Réalisations</span></nav>
+<h1>Réalisations</h1>
+<p>Nos chantiers, nos engins et notre production, sur le terrain.</p>
+</div></section>
+<section class="section" id="realisations"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Sur le terrain</div><h2>La force du concret.</h2><p>Nos chantiers, nos engins et notre production. Cette galerie s’enrichira au fil de nos réalisations.</p></div>
+<div class="gallery reveal">
+<figure><picture><source type="image/avif" srcset="/images/briqueterie-parc-stockage.avif"><img src="/images/briqueterie-parc-stockage.jpg" alt="Parc de stockage : parpaings sur palettes" loading="lazy" style="object-position:center 42%"></picture><figcaption>Briqueterie · parc de stockage</figcaption></figure>
+<figure><picture><source type="image/avif" srcset="/images/transport-camion-benne.avif"><img src="/images/transport-camion-benne.jpg" alt="Camion benne chargé de parpaings" loading="lazy"></picture><figcaption>Transport · camion benne</figcaption></figure>
+<figure><picture><source type="image/avif" srcset="/images/transport-semi-remorque.avif"><img src="/images/transport-semi-remorque.jpg" alt="Semi-remorque avec conteneur au port" loading="lazy" style="object-position:center 40%"></picture><figcaption>Transport · semi-remorque</figcaption></figure>
+<figure><picture><source type="image/avif" srcset="/images/pondeuse-production.avif"><img src="/images/pondeuse-production.jpg" alt="Pondeuse en production" loading="lazy"></picture><figcaption>Briqueterie · pondeuse</figcaption></figure>
+<figure><picture><source type="image/avif" srcset="/images/parpaings-sortie-pondeuse.avif"><img src="/images/parpaings-sortie-pondeuse.jpg" alt="Parpaings creux à la sortie de la pondeuse" loading="lazy"></picture><figcaption>Briqueterie · parpaings creux</figcaption></figure>
+</div>
+</div></section>
+<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques.avif"><img src="/images/briques.png" alt="" aria-hidden="true"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
+</Base>

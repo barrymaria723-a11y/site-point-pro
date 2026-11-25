@@ -1,0 +1,87 @@
+---
+import Admin from '../layouts/Admin.astro';
+import Accueil from '../components/admin/Accueil.astro';
+import Secret from '../components/admin/Secret.astro';
+import { sql, autoriser, liberer } from '../server/base.js';
+import { adminPret, bonMotDePasse, connecte, empreinte, fermerSession, ouvrirSession } from '../server/securite.js';
+import { proteger } from '../server/entetes.js';
+import { STATUTS } from '../lib/choix.js';
+import { gnf, nombre } from '../lib/produits.js';
+
+export const prerender = false;
+proteger(Astro.response);
+
+const PAR_PAGE = 50, UUID = /^[0-9a-f-]{36}$/i;
+const prete = adminPret();
+let erreur = '', session = false;
+const p = Astro.url.searchParams;
+const filtre = Object.hasOwn(STATUTS, p.get('statut') ?? '') ? p.get('statut') : '';
+const page = Math.max(1, Math.min(10000, parseInt(p.get('page') ?? '1', 10) || 1));
+const adresse = (s, n = 1) => '/admin' + (s || n > 1 ? '?' + new URLSearchParams({ ...(s && { statut: s }), ...(n > 1 && { page: n }) }) : '');
+
+let devis = [], totaux = {}, total = 0;
+try {
+  session = await connecte(Astro.cookies);
+  if (Astro.request.method === 'POST' && prete) {
+    const f = await Astro.request.formData(), action = f.get('action'), id = String(f.get('id') ?? '');
+    if (action === 'connexion') {
+      const cle = empreinte('admin', Astro.clientAddress);
+      if (!(await autoriser(cle, 5, 900)) || !(await autoriser('admin:tous', 50, 900))) { erreur = 'Trop d’essais. Réessayez dans 15 minutes.'; Astro.response.status = 429; }
+      else if (await bonMotDePasse(f.get('mdp') ?? '')) { await liberer(cle); await ouvrirSession(Astro.cookies); return Astro.redirect('/admin', 303); }
+      else { erreur = 'Mot de passe incorrect.'; Astro.response.status = 401; }
+    } else if (!session) { erreur = 'Votre session est terminée. Reconnectez-vous.'; Astro.response.status = 401; }
+    else if (action === 'deconnexion') { fermerSession(Astro.cookies); return Astro.redirect('/admin', 303); }
+    else if (UUID.test(id)) {
+      if (action === 'modifier' && Object.hasOwn(STATUTS, String(f.get('statut')))) await sql('update devis set statut = $2, note = $3 where id = $1', [id, f.get('statut'), String(f.get('note') ?? '').slice(0, 1000)]);
+      if (action === 'supprimer') await sql('delete from devis where id = $1', [id]);
+      return Astro.redirect(adresse(filtre, page), 303);
+    }
+  }
+  if (session) {
+    for (const l of await sql('select statut, count(*)::int as n from devis group by statut')) totaux[l.statut] = l.n;
+    total = filtre ? totaux[filtre] ?? 0 : Object.values(totaux).reduce((a, b) => a + b, 0);
+    devis = await sql(`select * from devis ${filtre ? 'where statut = $3' : ''} order by cree_le desc limit $1 offset $2`, [PAR_PAGE, (page - 1) * PAR_PAGE, ...(filtre ? [filtre] : [])]);
+  }
+} catch (e) {
+  console.error('admin :', e.message);
+  erreur = 'La base de données ne répond pas. Réessayez dans un instant.'; Astro.response.status = 503;
+}
+const date = (d) => new Date(d).toLocaleString('fr-FR', { timeZone: 'Africa/Conakry', dateStyle: 'medium', timeStyle: 'short' });
+// Numéro guinéen à 9 chiffres : on ajoute l'indicatif pour WhatsApp
+const wa = (t) => { const n = t.replace(/\D/g, '').replace(/^00/, ''); return 'https://wa.me/' + (n.length === 9 ? '224' + n : n); };
+---
+<Admin titre="Demandes de devis">
+{!session ? (
+<Accueil titre="Les demandes de vos clients, au même endroit." texte="Retrouvez chaque demande de devis, répondez sur WhatsApp et suivez vos ventes.">
+<h1>Connexion</h1>
+<p class="intro-page">Entrez votre mot de passe pour voir les demandes de devis.</p>
+{erreur && <p class="erreur" role="alert">{erreur}</p>}
+{prete ? (
+<form method="post"><input type="hidden" name="action" value="connexion"><Secret id="mdp" label="Mot de passe" autocomplete="current-password" autofocus /><button class="plein">Se connecter</button></form>
+) : <p class="erreur">Cette page n’est pas encore configurée : ajoutez ADMIN_MOT_DE_PASSE (12 caractères minimum) et SESSION_SECRET (32 minimum) dans Vercel.</p>}
+</Accueil>
+) : (
+<>
+<header><h1>Demandes de devis</h1><div class="actions"><a href="/admin/mot-de-passe">Changer le mot de passe</a><form method="post"><input type="hidden" name="action" value="deconnexion"><button>Se déconnecter</button></form></div></header>
+<main>
+{p.has('mdp') && <p class="succes" role="status">Votre mot de passe est changé. Les autres appareils sont déconnectés.</p>}
+{erreur && <p class="erreur" role="alert">{erreur}</p>}
+<nav aria-label="Filtrer par statut"><a href="/admin" aria-current={!filtre ? 'page' : undefined}>Toutes ({Object.values(totaux).reduce((a, b) => a + b, 0)})</a>{Object.entries(STATUTS).map(([k, v]) => <a href={adresse(k)} aria-current={filtre === k ? 'page' : undefined}>{v} ({totaux[k] ?? 0})</a>)}</nav>
+{!devis.length && !erreur && <p class="vide">Aucune demande pour l’instant. Les demandes envoyées depuis le site apparaîtront ici.</p>}
+{devis.map((d) => (
+<article>
+<div class="tete"><div><h2>{d.nom}{d.entreprise && ` (${d.entreprise})`}</h2><p>{date(d.cree_le)}{d.ville && ` · ${d.ville}`}{d.service && ` · ${d.service}`}</p></div><span class={`statut ${d.statut}`}>{STATUTS[d.statut]}</span></div>
+<p class="liens"><a href={`tel:${d.telephone.replace(/[^\d+]/g, '')}`}>{d.telephone}</a><a href={wa(d.telephone)} target="_blank" rel="noopener noreferrer">Répondre sur WhatsApp ↗</a></p>
+{d.besoin && <p class="besoin">{d.besoin}</p>}
+{d.lignes.length > 0 && <ul>{d.lignes.map((l) => <li><span>{l.nom} : {nombre(l.q)}{l.m2 ? ' m²' : ''}</span><span>{l.prix ? gnf(l.prix * l.q) : 'à chiffrer'}</span></li>)}<li class="somme"><span>Total estimé hors livraison</span><span>{gnf(Number(d.total))}{d.a_chiffrer && ' + à chiffrer'}</span></li></ul>}
+<form method="post" class="suivi"><input type="hidden" name="action" value="modifier"><input type="hidden" name="id" value={d.id}>
+<label>Statut<select name="statut">{Object.entries(STATUTS).map(([k, v]) => <option value={k} selected={d.statut === k}>{v}</option>)}</select></label>
+<label class="large">Note<input name="note" maxlength="1000" value={d.note} placeholder="Ex. rappeler lundi"></label><button class="plein">Enregistrer</button></form>
+<details><summary>Supprimer</summary><form method="post"><input type="hidden" name="action" value="supprimer"><input type="hidden" name="id" value={d.id}><p>La demande sera effacée définitivement.</p><button class="danger">Supprimer la demande de {d.nom}</button></form></details>
+</article>
+))}
+{total > PAR_PAGE && <nav aria-label="Pages">{page > 1 && <a href={adresse(filtre, page - 1)}>Plus récentes</a>}{page * PAR_PAGE < total && <a href={adresse(filtre, page + 1)}>Plus anciennes</a>}</nav>}
+</main>
+</>
+)}
+</Admin>

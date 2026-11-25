@@ -1,0 +1,133 @@
+/* Ajouts au style de Maria (maria.css n’est pas modifié) */
+
+/* ===== Images AVIF ===== */
+picture{display:contents}
+
+/* ===== Devis et calculateur ===== */
+.inline-link{color:var(--gold-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+#calculateur,#transport{scroll-margin-top:86px}
+.add{display:block;margin:8px 0 0 auto;min-height:40px;padding:0 14px;border-radius:7px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);font:700 13px 'DM Sans',Arial,sans-serif;cursor:pointer;transition:background .2s,color .2s}
+.add:hover{background:var(--navy);color:#fff}
+.pave-add{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:14px;color:inherit}
+.pave-add select{min-height:40px;padding:0 10px;border:1px solid #cfd4da;border-radius:7px;background:#fff;color:var(--ink);font:600 15px 'DM Sans',Arial,sans-serif}
+.pave-add .add{margin:0}
+.calc{display:grid;grid-template-columns:1.5fr 1fr;gap:24px}
+.calc-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px;align-content:start}
+.calc .who-opt span{min-height:52px;font-size:16px}
+.calc .field:last-child{grid-column:1/-1}
+.calc .field input,.calc .field select{min-width:0;width:100%}
+.calc-result{background:var(--navy);color:#fff;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.calc-label{display:block;color:#F2A65A;font-size:13px;font-weight:700}
+.calc-result strong{display:block;font:800 clamp(30px,3.6vw,42px) Manrope,Arial,sans-serif;letter-spacing:-.03em;line-height:1.15;margin:4px 0 6px;font-variant-numeric:tabular-nums}
+.calc-result p{color:#c9d3e0;margin:0;line-height:1.6;font-size:15px}
+.calc-result .calc-price{color:#fff;font-weight:700;font-size:18px;min-height:29px;margin:8px 0 18px}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;filter:none}
+.cart-fab{position:fixed;left:calc(22px + env(safe-area-inset-left,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));min-height:50px;padding:0 20px;border:0;border-radius:40px;background:var(--navy);color:#fff;font:800 14px 'DM Sans',Arial,sans-serif;box-shadow:0 0 0 2px #ffffff40,0 8px 30px #0003;cursor:pointer;z-index:40}
+.cart-fab:hover{background:var(--navy2)}
+.cart{border:0;padding:0;margin:0 0 0 auto;width:min(460px,100%);max-width:100%;height:100vh;height:100dvh;max-height:none;background:#fff;color:var(--ink)}
+.cart[open]{display:flex;flex-direction:column}
+.cart::backdrop{background:#0b183899}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}
+.cart-head h2{font-size:22px;margin:0;color:var(--navy)}
+.cart-x{width:44px;height:44px;border:0;border-radius:10px;background:var(--cream);font-size:24px;line-height:1;color:var(--ink);cursor:pointer}
+.cart{overflow-x:hidden}
+.cart-list{list-style:none;margin:0;padding:0 22px;overflow-y:auto;flex:1}
+.cart-list li{display:grid;grid-template-columns:1fr 104px;gap:6px 14px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line)}
+.cart-info{display:flex;flex-direction:column;align-items:flex-start;gap:3px;grid-row:span 2}
+.cart-info label{font-weight:800;color:var(--navy);font-size:15px}
+.cart-info span{font-size:13px;color:var(--muted)}
+.cart-list input{width:100%;padding:11px 12px;border:1px solid #cfd4da;border-radius:7px;font:700 16px 'DM Sans',Arial,sans-serif;text-align:right;color:var(--ink);background:#fff}
+.cart-sub{font-weight:700;font-size:14px;text-align:right;font-variant-numeric:tabular-nums}
+.cart-rm,.cart-clear{border:0;background:none;padding:8px 0;font:600 13px 'DM Sans',Arial,sans-serif;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.cart-rm:hover,.cart-clear:hover{color:var(--gold-ink)}
+.cart-foot{padding:16px 22px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--cream)}
+.cart-sum{font:800 18px Manrope,Arial,sans-serif;color:var(--navy);margin:0 0 12px}
+.cart-send{width:100%;background:#178045;color:#fff}
+.cart-note{font-size:13px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+.cart-recap{grid-column:1/-1;display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid #cfd4da;border-radius:12px;background:#fff;font-size:15px}
+.cart-recap b{color:var(--navy)}
+.cart-recap-total{font-weight:800;margin-top:4px}
+@media(max-width:900px){.calc{grid-template-columns:1fr}}
+@media(max-width:560px){.calc .who-opts{gap:10px}.calc .who-opt span{padding:0 10px;gap:8px;font-size:15px}.cart-fab{left:16px;padding:0 16px}}
+@media(max-width:400px){.calc-fields{grid-template-columns:1fr}}
+
+/* ===== Tarifs en cartes sur téléphone ===== */
+@media(max-width:700px){
+.price-table{min-width:0;display:block}
+.price-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.price-table tbody{display:block}
+.price-table tr{display:grid;grid-template-columns:1fr auto;gap:4px 14px;padding:16px;border-top:1px solid var(--line)}
+.price-table tr:first-child{border-top:0}
+.price-table tr:nth-child(even){background:#fafbfc}
+.price-table td,.price-table tr:nth-child(even) td{padding:0;border:0;background:none}
+.price-table tbody tr:hover td{background:none}
+.price-table .prod{grid-column:1;grid-row:1}
+.price-table .price{grid-column:2;grid-row:1 / span 3}
+.price-table td:nth-child(2){grid-column:1;font-size:14px;color:var(--muted)}
+.price-table .dim{grid-column:1;font-size:14px}
+}
+
+/* ===== Page introuvable ===== */
+.lost{min-height:60vh;display:flex;align-items:center}
+.lost h1{font-size:clamp(30px,5vw,48px);letter-spacing:-.04em;margin:0 0 10px;color:var(--navy)}
+.lost p{color:var(--muted);line-height:1.7;margin:0 0 20px}
+.lost .btn.plain{background:#fff;border:1.5px solid var(--navy);color:var(--navy)}
+
+/* ===== Bande défilante plus fine, avec pointillés ===== */
+.marquee{padding:9px 0;position:relative}
+.marquee:before,.marquee:after{content:"";position:absolute;left:0;right:0;height:3px;background:radial-gradient(circle,var(--navy) 1.4px,transparent 1.6px) 0 0/9px 3px repeat-x}
+.marquee:before{top:3px}.marquee:after{bottom:3px}
+.track span{font:700 13px Manrope,Arial,sans-serif;padding-right:22px;gap:22px}
+.track span:after{width:5px;height:5px}
+
+/* ===== Menu sur une seule ligne ===== */
+.navlinks a,.nav>.btn{white-space:nowrap}
+.nav>.btn{flex-shrink:0}
+@media(min-width:1241px){.nav{padding:0 max(3%,env(safe-area-inset-left,0px))}.navlinks{gap:clamp(14px,1.5vw,25px)}}
+@media(max-width:1240px){.navlinks{display:none;position:absolute;top:86px;left:0;right:0;background:#fff;padding:20px max(5.5%,env(safe-area-inset-left,0px));flex-direction:column;align-items:flex-start;gap:4px;box-shadow:var(--shadow)}.navlinks.open{display:flex}.menu{display:inline-flex;flex-shrink:0}.nav>.btn{margin-left:auto}.nav.scrolled .navlinks{top:70px}}
+@media(max-width:560px){.navlinks{top:76px}.wa,.cart-fab{min-height:46px;padding:0 14px;font-size:13px}.cart-fab{left:12px}}
+@media(max-width:380px){.nav{gap:10px;padding:0 4%}.brand{font-size:13px;gap:9px;letter-spacing:.03em}.brand small{font-size:7px;letter-spacing:.1em}.brandmark,.nav.scrolled .brandmark{width:40px;height:40px;border-radius:10px}}
+
+/* ===== Mur du calculateur et panier ===== */
+@keyframes brickIn{from{transform:translateY(-26px)}70%{transform:translateY(2px)}}
+@keyframes drawer{from{transform:translateX(18px)}}
+@keyframes bump{35%{transform:scale(1.16)}65%{transform:scale(.96)}}
+@keyframes panelIn{from{transform:translateY(16px)}}
+.panel{animation:panelIn .45s cubic-bezier(.2,.8,.2,1)}
+.add{transition:background .2s,color .2s,transform .15s}.add:active{transform:scale(.94)}
+.calc-wall{width:100%;height:96px;margin:0 0 16px;display:grid;align-content:end;gap:3px}
+.calc-wall div{display:flex;gap:3px;height:16px}
+.calc-wall i{flex:2;background:#E8892B;border-radius:2px;animation:brickIn .42s cubic-bezier(.3,.9,.3,1) both}
+.calc-wall i.half{flex:1}
+.calc-wall i:nth-child(3n+1){background:#D57A20}
+.calc-wall i:nth-child(4n+2){background:#F2A65A}
+.calc-wall.sol i{background:#9FB0CF}.calc-wall.sol i:nth-child(3n+1){background:#8799BC}.calc-wall.sol i:nth-child(4n+2){background:#B6C3DC}
+.cart[open]{animation:drawer .38s cubic-bezier(.2,.8,.2,1)}
+.cart-fab{animation:bump .5s ease}
+.calc-result>div[aria-live]{width:100%}
+astro-island{display:contents}
+
+/* ===== Camion (sans changer la hauteur du bandeau) ===== */
+@keyframes drive{from{transform:translateX(-110px)}to{transform:translateX(100vw)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.truck{position:absolute;left:0;bottom:0;width:72px;height:31px;z-index:1;color:#fff;opacity:.35;pointer-events:none;transform:translateX(-110px);animation:drive 16s linear infinite}
+.truck .wheel{transform-box:fill-box;transform-origin:center;animation:spin 1s linear infinite}
+@media(prefers-reduced-motion:reduce){.truck{display:none}}
+@media(max-width:400px){.who-opts{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.who-opt span{padding:0 8px;gap:8px;font-size:15px}}
+.recap-enter-active{transition:transform .35s ease}.recap-enter-from{transform:translateY(12px)}
+
+/* ===== Enregistrement des demandes ===== */
+.piege{position:absolute !important;left:0;top:0;pointer-events:none;width:1px;height:1px;opacity:0}
+.etat{grid-column:1/-1;margin:0;padding:12px 14px;border-radius:8px;background:#E7F4EC;color:#0f5b30;font-size:14px;font-weight:600;line-height:1.5}
+.cart-form{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.cart-form .field{min-width:0}
+.cart-form .field input{width:100%;min-width:0;padding:11px 12px;font-size:16px}
+.cart-form .cart-send{grid-column:1/-1}
+.cart-foot .etat{margin-top:10px}
+
+/* ===== Listes déroulantes : même hauteur que les champs, Safari compris ===== */
+.field select,.pave-add select{-webkit-appearance:none;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2313295C' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:38px;cursor:pointer}
+.field input,.field select{min-height:50px;line-height:1.3}
+
+/* Contraste des étiquettes de location */
+.equip-tag{color:#F2A65A}

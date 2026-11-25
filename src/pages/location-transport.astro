@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Camion from '../components/Camion.astro';
+---
+<Base page="location-transport" titre="Location & transport — POINT PRO GUINÉE" description="Engins de chantier, béton, manutention et transport de matériaux.">
+<section class="page-hero"><picture><source type="image/avif" srcset="/images/transport-camion-benne.avif"><img class="hero-bg" src="/images/transport-camion-benne.jpg" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
+<nav class="crumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Location &amp; transport</span></nav>
+<h1>Location &amp; transport</h1>
+<p>Engins de chantier, béton, manutention et transport de matériaux.</p>
+</div></section>
+<section class="section dark" id="location"><div class="wrap">
+<div class="section-head reveal"><div class="eyebrow">Location &amp; transport</div><h2>Du matériel et des moyens logistiques pour avancer.</h2><p>Indiquez-nous votre chantier, sa localisation et la durée souhaitée. Notre équipe pourra vous orienter vers la solution adaptée.</p></div>
+<div class="equipment-grid">
+<article class="equip reveal"><div class="equip-visual photo"><picture><source type="image/avif" srcset="/images/location-engins.avif"><img src="/images/location-engins.jpg" alt="Pelle mécanique, compacteur, chargeuse, camion benne et toupie à béton sur un chantier" loading="lazy" style="object-position:30% center"></picture></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Engins de chantier</h3><p>Poclain, compacteur et équipements pour vos travaux de terrassement et préparation.</p></div></article>
+<article class="equip reveal"><div class="equip-visual photo"><picture><source type="image/avif" srcset="/images/location-betonniere.avif"><img src="/images/location-betonniere.jpg?v=2" alt="Ouvrier versant le béton d’une bétonnière sur un chantier" loading="lazy" style="object-position:45% center"></picture></div><div class="equip-body"><span class="equip-tag">Location</span><h3>Béton &amp; manutention</h3><p>Bétonnières, pompes à béton et chariots élévateurs selon disponibilité.</p></div></article>
+<article class="equip reveal" id="transport"><div class="equip-visual photo"><picture><source type="image/avif" srcset="/images/transport-camion-benne.avif"><img src="/images/transport-camion-benne.jpg" alt="Camion benne POINT PRO chargé de parpaings" loading="lazy" style="object-position:center 60%"></picture></div><div class="equip-body"><span class="equip-tag">Transport</span><h3>Transport de matériaux &amp; engins</h3><p>Camions bennes, porte-chars et semi-plateaux pour vos opérations logistiques.</p></div></article>
+</div>
+<div class="fleet reveal">
+<figure><picture><source type="image/avif" srcset="/images/transport-camion-benne.avif"><img src="/images/transport-camion-benne.jpg" alt="Camion benne chargé de parpaings sur le site de la briqueterie" loading="lazy"></picture><figcaption><b>Camion benne</b> · livraison de parpaings depuis la briqueterie</figcaption></figure>
+<figure><picture><source type="image/avif" srcset="/images/transport-semi-remorque.avif"><img src="/images/transport-semi-remorque.jpg" alt="Tracteur et semi-remorque transportant un conteneur au port" loading="lazy" style="object-position:center 40%"></picture><figcaption><b>Semi-remorque</b> · transport de conteneurs et de charges lourdes</figcaption></figure>
+</div>
+</div></section>
+<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques.avif"><img src="/images/briques.png" alt="" aria-hidden="true"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
+</Base>

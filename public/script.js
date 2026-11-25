@@ -51,28 +51,11 @@
     [].forEach.call(targets, function(el){ io.observe(el); });
   }
 
-  // Onglets du catalogue (tarifs)
-  var tabs = document.querySelectorAll('.tab');
-  [].forEach.call(tabs, function(t, k){
-    t.addEventListener('click', function(){ [].forEach.call(tabs, function(o){ var on = o === t; o.setAttribute('aria-selected', on ? 'true' : 'false'); var pnl = $(o.getAttribute('aria-controls')); pnl.hidden = !on; if (on) pnl.classList.add('in'); }); });
-    t.addEventListener('keydown', function(e){ if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; var n = tabs[(k + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); n.click(); });
-  });
-
-  // Formulaire de devis (contact)
-  var form = $('devis');
-  if (form) {
-    var cf = $('companyField'), company = $('company');
-    [].forEach.call(document.querySelectorAll('input[name="who"]'), function(r){
-      r.addEventListener('change', function(){ var ent = r.value === 'Entreprise' && r.checked; cf.hidden = !ent; company.required = ent; form.classList.toggle('is-ent', ent); if (ent) company.focus(); });
-    });
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var v = function(id){ return $(id).value.trim(); };
-      var who = document.querySelector('input[name="who"]:checked').value;
-      var msg = 'Bonjour POINT PRO GUINÉE, je souhaite un devis.\nClient : ' + who + (who === 'Entreprise' ? ' (' + v('company') + ')' : '') + '\nNom : ' + v('name') + '\nTéléphone : ' + v('phone') + '\nService : ' + v('service') + '\nVille : ' + v('city') + '\nBesoin : ' + v('need');
-      window.open('https://wa.me/224620776222?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-    });
-  }
+  // Secours : si le navigateur ne signale aucune apparition, on montre tout
+  setTimeout(function(){
+    if (document.querySelector('.in')) return;
+    [].forEach.call(document.querySelectorAll('.reveal, .stagger'), function(el){ el.classList.add('in'); });
+  }, 2500);
 })();
 
 // ===== Effets =====
@@ -117,7 +100,7 @@
   });
 
   // Apparition en cascade des cartes et photos
-  var groups = '.services, .equipment-grid, .brick-gallery, .gallery, .stats, .fleet, .cat-docs, .pave-card, .brick-points, .footer-grid, .ticks';
+  var groups = '.services, .equipment-grid, .brick-gallery, .gallery, .stats, .fleet, .cat-docs, .brick-points, .footer-grid, .ticks';
   var items = [];
   [].forEach.call(document.querySelectorAll(groups), function(g){
     [].forEach.call(g.children, function(c, i){
