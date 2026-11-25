@@ -1,0 +1,34 @@
+---
+const { titre } = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>{titre} — POINT PRO</title><link rel="icon" type="image/png" href="/images/logo-embleme.png">
+</head>
+<body><slot /></body>
+</html>
+<style is:global>
+*{box-sizing:border-box}body{margin:0;background:#F2F3F5;color:#172334;font:16px/1.5 'DM Sans',system-ui,sans-serif}
+h1{font-size:22px;margin:0}h2{font-size:18px;margin:0;color:#13295C;overflow-wrap:anywhere}p{margin:0}
+header{background:#0B1838;color:#fff;padding:14px max(16px,calc(50% - 440px));display:flex;justify-content:space-between;align-items:center;gap:12px}
+header button{background:none;color:#fff;border-color:#ffffff60}
+main{max-width:880px;margin:0 auto;padding:20px 16px 60px;display:grid;gap:14px}
+.entree{max-width:400px;padding-top:12vh}.entree img{border-radius:14px}.entree form{display:grid;gap:10px}
+nav{display:flex;flex-wrap:wrap;gap:8px}nav a{padding:8px 14px;border-radius:99px;background:#fff;border:1px solid #cfd4da;color:inherit;text-decoration:none;font-weight:600;font-size:14px}nav a[aria-current]{background:#13295C;border-color:#13295C;color:#fff}
+article{background:#fff;border:1px solid #e0e3e7;border-radius:12px;padding:18px;display:grid;gap:12px}
+.tete{display:flex;justify-content:space-between;gap:12px;align-items:start}.tete p{color:#5d6a7b;font-size:14px}
+.statut{font-size:13px;font-weight:700;padding:4px 12px;border-radius:99px;background:#e6e7e8;white-space:nowrap}.statut.nouveau{background:#FDE7CF;color:#8a430a}.statut.rappele{background:#DDE6F8;color:#13295C}.statut.vendu{background:#DDF1E4;color:#0f5b30}
+.liens{display:flex;flex-wrap:wrap;gap:6px 18px}.liens a{color:#13295C;font-weight:700}.besoin{white-space:pre-wrap;overflow-wrap:anywhere}
+ul{list-style:none;margin:0;padding:10px 14px;background:#F2F3F5;border-radius:8px;font-size:15px}li{display:flex;justify-content:space-between;gap:12px;padding:3px 0}li span:last-child{white-space:nowrap}.somme{font-weight:700;border-top:1px solid #cfd4da;margin-top:5px;padding-top:7px}
+.suivi{display:flex;flex-wrap:wrap;gap:10px;align-items:end}label{font-size:14px;font-weight:600;display:grid;gap:4px}.large{flex:1 1 220px}
+input,select{font:inherit;padding:10px 12px;border:1px solid #cfd4da;border-radius:7px;background:#fff;width:100%;color:inherit}
+button{font:inherit;font-weight:700;min-height:44px;padding:8px 16px;border-radius:7px;border:1px solid #13295C;background:#fff;color:#13295C;cursor:pointer}.plein{background:#13295C;color:#fff}.danger{background:#a3261b;border-color:#a3261b;color:#fff;margin-top:8px}
+summary{cursor:pointer;color:#5d6a7b;font-size:14px;width:max-content}details p{font-size:14px;margin-top:6px}.erreur{background:#FBE5E2;color:#8a1c12;padding:12px 14px;border-radius:8px}.vide{color:#5d6a7b;padding:30px 0;text-align:center}
+:focus-visible{outline:3px solid #E8892B;outline-offset:2px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px 16px}.actions a{color:#fff;font-weight:600;font-size:15px}
+.succes{background:#E7F4EC;color:#0f5b30;padding:12px 14px;border-radius:8px}.aide{font-size:14px;color:#5d6a7b}.retour{color:#13295C;font-weight:600}
+.entree input[type=password],.entree input[type=text]{font-size:16px}.voir{display:flex;align-items:center;gap:8px;font-weight:400}.voir input{width:auto}
+@media(max-width:560px){header{flex-direction:column;align-items:flex-start}.actions{justify-content:flex-start}}
+</style>

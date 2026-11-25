@@ -19,6 +19,7 @@ const SCHEMA = [
     note text not null default ''
   )`,
   'create index if not exists devis_cree_le on devis (cree_le desc)',
+  'create table if not exists reglages (cle text primary key, valeur jsonb not null)',
   'create table if not exists limites (cle text primary key, fin timestamptz not null, n int not null)',
 ];
 
