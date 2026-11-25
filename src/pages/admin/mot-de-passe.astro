@@ -1,5 +1,7 @@
 ---
 import Admin from '../../layouts/Admin.astro';
+import Accueil from '../../components/admin/Accueil.astro';
+import Secret from '../../components/admin/Secret.astro';
 import { autoriser, liberer } from '../../server/base.js';
 import { MDP_MAX, MDP_MIN, bonMotDePasse, changerMotDePasse, connecte, empreinte, ouvrirSession } from '../../server/securite.js';
 import { proteger } from '../../server/entetes.js';
@@ -35,19 +37,20 @@ try {
 }
 ---
 <Admin titre="Changer le mot de passe">
-<main class="entree">
-<a class="retour" href="/admin">Retour aux demandes</a>
+<Accueil titre="Gardez votre espace en sécurité." points={['Le nouveau mot de passe marche tout de suite.', 'Les autres appareils connectés sont déconnectés.', 'Une phrase facile à retenir convient très bien.']}>
+<a class="retour" href="/admin"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>Retour aux demandes</a>
 <h1>Changer le mot de passe</h1>
+<p class="intro-page">Entrez l’actuel, puis choisissez le nouveau.</p>
 {erreur && <p class="erreur" role="alert">{erreur}</p>}
 <form method="post">
-<label for="actuel">Mot de passe actuel</label><input id="actuel" name="actuel" type="password" required maxlength={MDP_MAX} autocomplete="current-password">
-<label for="nouveau">Nouveau mot de passe</label><input id="nouveau" name="nouveau" type="password" required minlength={MDP_MIN} maxlength={MDP_MAX} autocomplete="new-password" aria-describedby="aide">
-<p class="aide" id="aide">Au moins {MDP_MIN} caractères. Une phrase facile à retenir convient très bien.</p>
-<label for="encore">Répétez le nouveau mot de passe</label><input id="encore" name="encore" type="password" required minlength={MDP_MIN} maxlength={MDP_MAX} autocomplete="new-password">
-<label class="voir"><input type="checkbox" id="voir"> Afficher les mots de passe</label>
+<Secret id="actuel" label="Mot de passe actuel" maxlength={MDP_MAX} autocomplete="current-password" />
+<div class="bloc-nouveau">
+<Secret id="nouveau" label="Nouveau mot de passe" minlength={MDP_MIN} maxlength={MDP_MAX} autocomplete="new-password" aria-describedby="regles" />
+<Secret id="encore" label="Répétez le nouveau mot de passe" minlength={MDP_MIN} maxlength={MDP_MAX} autocomplete="new-password" />
+<ul class="regles" id="regles"><li id="r-long">Au moins {MDP_MIN} caractères</li><li id="r-varie">Des caractères variés</li><li id="r-egal">Les deux saisies sont identiques</li></ul>
+</div>
 <button class="plein">Changer le mot de passe</button>
 </form>
-<p class="aide">Les autres appareils connectés seront déconnectés.</p>
-</main>
-<script is:inline>document.getElementById('voir').addEventListener('change',function(){var t=this.checked?'text':'password';['actuel','nouveau','encore'].forEach(function(i){document.getElementById(i).type=t})});</script>
+</Accueil>
+<script is:inline define:vars={{ MDP_MIN }}>(function(){var n=document.getElementById('nouveau'),e=document.getElementById('encore');function m(i,ok){document.getElementById(i).classList.toggle('ok',ok)}function v(){m('r-long',n.value.length>=MDP_MIN);m('r-varie',new Set(n.value).size>=5);m('r-egal',n.value!==''&&n.value===e.value)}n.addEventListener('input',v);e.addEventListener('input',v)})();</script>
 </Admin>

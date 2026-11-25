@@ -23,7 +23,7 @@ export function calculer({ mode, L, H, O, brique, modele, marge }) {
     return { id: `pave:${modele}`, q, quantite: `${nombre(q)} m²`, prix: q * PAVE.prix, message: `Pour ${nombre(aire)} m² de sol.` };
   }
   const q = Math.ceil((aire / FACE_M2) * k - 1e-6);
-  return { id: brique, q, quantite: `${nombre(q, 0)} briques`, prix: q * produit(brique).prix, message: `Pour ${nombre(aire)} m² de mur${o > 0 ? ', ouvertures déduites' : ''}.` };
+  return { id: brique, q, quantite: `${nombre(q, 0)} brique${q > 1 ? 's' : ''}`, prix: q * produit(brique).prix, message: `Pour ${nombre(aire)} m² de mur${o > 0 ? ', ouvertures déduites' : ''}.` };
 }
 
 // Mur qui se monte : 1 à 5 rangs selon la quantité

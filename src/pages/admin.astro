@@ -1,5 +1,7 @@
 ---
 import Admin from '../layouts/Admin.astro';
+import Accueil from '../components/admin/Accueil.astro';
+import Secret from '../components/admin/Secret.astro';
 import { sql, autoriser, liberer } from '../server/base.js';
 import { adminPret, bonMotDePasse, connecte, empreinte, fermerSession, ouvrirSession } from '../server/securite.js';
 import { proteger } from '../server/entetes.js';
@@ -50,14 +52,14 @@ const wa = (t) => { const n = t.replace(/\D/g, '').replace(/^00/, ''); return 'h
 ---
 <Admin titre="Demandes de devis">
 {!session ? (
-<main class="entree">
-<img src="/images/logo-embleme.png" alt="" width="64" height="64">
-<h1>Demandes de devis</h1>
+<Accueil titre="Les demandes de vos clients, au même endroit." texte="Retrouvez chaque demande de devis, répondez sur WhatsApp et suivez vos ventes.">
+<h1>Connexion</h1>
+<p class="intro-page">Entrez votre mot de passe pour voir les demandes de devis.</p>
 {erreur && <p class="erreur" role="alert">{erreur}</p>}
 {prete ? (
-<form method="post"><input type="hidden" name="action" value="connexion"><label for="mdp">Mot de passe</label><input id="mdp" name="mdp" type="password" required autocomplete="current-password"><button class="plein">Se connecter</button></form>
+<form method="post"><input type="hidden" name="action" value="connexion"><Secret id="mdp" label="Mot de passe" autocomplete="current-password" autofocus /><button class="plein">Se connecter</button></form>
 ) : <p class="erreur">Cette page n’est pas encore configurée : ajoutez ADMIN_MOT_DE_PASSE (12 caractères minimum) et SESSION_SECRET (32 minimum) dans Vercel.</p>}
-</main>
+</Accueil>
 ) : (
 <>
 <header><h1>Demandes de devis</h1><div class="actions"><a href="/admin/mot-de-passe">Changer le mot de passe</a><form method="post"><input type="hidden" name="action" value="deconnexion"><button>Se déconnecter</button></form></div></header>
