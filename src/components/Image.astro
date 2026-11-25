@@ -1,6 +1,0 @@
----
-// Image AVIF avec repli JPG/PNG pour les anciens téléphones
-const { src, alt = '', ...reste } = Astro.props;
-const avif = `/images/${src.replace(/\.\w+$/, '')}.avif`;
----
-<picture><source type="image/avif" srcset={avif}><img src={`/images/${src}`} alt={alt} {...reste}></picture>
