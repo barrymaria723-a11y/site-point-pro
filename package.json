@@ -7,26 +7,18 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/pages-html.mjs",
+    "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.9",
-    "@astrojs/vercel": "^11.0.22",
     "@astrojs/vue": "^7.1.6",
     "@nanostores/react": "^2.0.1",
     "@nanostores/vue": "^1.1.0",
     "astro": "^7.4.13",
     "nanostores": "^1.5.5",
-    "pg": "^8.23.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "vue": "^3.5.46"
-  },
-  "devDependencies": {
-    "@electric-sql/pglite": "^0.6.0"
-  },
-  "overrides": {
-    "path-to-regexp": "6.3.0"
   }
 }

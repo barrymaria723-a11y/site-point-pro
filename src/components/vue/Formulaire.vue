@@ -2,11 +2,10 @@
 import { onMounted, reactive, ref, nextTick } from 'vue';
 import { useStore } from '@nanostores/vue';
 import { $lignes, $total, quantite, initPanier, texteDevis, envoyerWhatsApp } from '../../lib/panier.js';
-import { enregistrer } from '../../lib/envoi.js';
 import { SERVICES, VILLES, telephoneValide } from '../../lib/choix.js';
 import { telephone } from '../../lib/saisie.js';
-const f = reactive({ who: 'Particulier', name: '', company: '', phone: '', service: SERVICES[0], city: VILLES[0], need: '', site: '' });
-const etat = ref(''), tel = ref(null);
+const f = reactive({ who: 'Particulier', name: '', company: '', phone: '', service: SERVICES[0], city: VILLES[0], need: '' });
+const tel = ref(null);
 const lignes = useStore($lignes), total = useStore($total), champ = ref(null), pret = ref(false);
 onMounted(() => { initPanier(); pret.value = true; });
 async function type() { if (f.who === 'Entreprise') { await nextTick(); champ.value?.focus(); } }
@@ -22,9 +21,6 @@ function envoyer() {
     + `\nNom : ${t('name')}\nTéléphone : ${t('phone')}\nService : ${f.service}\nVille : ${f.city}\nBesoin : ${t('need')}`;
   const devis = texteDevis();
   if (devis) msg += '\n\nProduits :\n' + devis;
-  etat.value = '';
-  enregistrer({ type: f.who, nom: f.name, entreprise: f.who === 'Entreprise' ? f.company : '', telephone: f.phone.trim(), service: f.service, ville: f.city, besoin: f.need, site: f.site })
-    .then((ok) => { etat.value = ok ? 'Votre demande est enregistrée. Envoyez aussi le message WhatsApp pour une réponse plus rapide.' : 'Envoyez bien le message WhatsApp : c’est lui qui nous transmet votre demande.'; });
   envoyerWhatsApp(msg);
 }
 </script>
@@ -44,9 +40,7 @@ function envoyer() {
       <span v-for="i in lignes" :key="i.id">{{ i.nom }} : {{ quantite(i) }}</span>
       <span class="cart-recap-total">Total estimé : {{ total }}</span>
     </div></Transition>
-    <input v-model="f.site" class="piege" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
     <button class="btn field full" type="submit">Envoyer ma demande sur WhatsApp ↗</button>
-    <p v-if="etat" class="etat" role="status">{{ etat }}</p>
-    <small>En cliquant, WhatsApp s’ouvrira avec votre demande préremplie. Vous pourrez la vérifier avant l’envoi. Vos coordonnées sont enregistrées par POINT PRO GUINÉE pour traiter votre demande. Écrivez-nous pour les faire supprimer.</small>
+    <small>En cliquant, WhatsApp s’ouvrira avec votre demande préremplie. Vous pourrez la vérifier avant l’envoi.</small>
   </form>
 </template>
