@@ -135,3 +135,12 @@ astro-island{display:contents}
 .section-head h2{margin:6px 0}
 #location .equip-visual{height:150px}
 @media(max-width:560px){.page-hero + .section{padding-top:12px}}
+
+/* Réalisations : tout sur un écran */
+#realisations .section-head h2{font-size:clamp(24px,2.6vw,32px);margin:4px 0}
+#realisations .section-head p{font-size:14px}
+#realisations .section-head{margin-bottom:12px}
+#realisations .gallery{grid-template-rows:150px 150px;gap:10px}
+#realisations .gallery figcaption{font-size:11.5px;padding:5px 8px;left:8px;bottom:8px}
+#realisations + .quote-band{padding-top:28px;padding-bottom:28px}
+@media(max-width:560px){#realisations .gallery{grid-template-rows:140px 120px 120px}}
