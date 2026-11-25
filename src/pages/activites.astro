@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Camion from '../components/Camion.astro';
 ---
 <Base page="activites" titre="Nos activités — POINT PRO GUINÉE" description="Briqueterie, matériaux, transport et location d’engins : quatre pôles pour votre chantier.">
-<section class="page-hero"><picture><source type="image/avif" srcset="/images/pondeuse-production.avif"><img class="hero-bg" src="/images/pondeuse-production.jpg" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
+<section class="page-hero"><picture><source type="image/avif" srcset="/images/pondeuse-production-640.avif 640w, /images/pondeuse-production-960.avif 960w, /images/pondeuse-production.avif 1280w" sizes="(max-width: 700px) 50vw, 100vw"><img class="hero-bg" src="/images/pondeuse-production.jpg" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
 <nav class="crumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Nos activités</span></nav>
 <h1>Nos activités</h1>
 <p>Briqueterie, matériaux, transport et location d’engins : quatre pôles pour votre chantier.</p>
@@ -17,5 +17,5 @@ import Camion from '../components/Camion.astro';
 <article class="service reveal"><span class="num">04 / LOCATION</span><div class="symbol"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="16" width="11" height="4" rx="2"/><path d="M4 16v-4h5l2 4"/><path d="M9 12l4-6 5 2"/><path d="M18 8l2 5h-4z"/></svg></div><h3>Location d’engins</h3><p>Des équipements pour vos opérations de chantier, de manutention et de bétonnage.</p><a class="more" href="/location-transport.html">Découvrir les équipements →</a></article>
 </div>
 </div></section>
-<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques.avif"><img src="/images/briques.png" alt="" aria-hidden="true"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
+<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques-640.avif 640w, /images/briques.avif 922w" sizes="(max-width: 700px) 50vw, 100vw"><img src="/images/briques.png" alt="" aria-hidden="true" loading="lazy"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
 </Base>

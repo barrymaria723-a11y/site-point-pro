@@ -5,7 +5,7 @@ import Calculateur from '../components/react/Calculateur.jsx';
 import Camion from '../components/Camion.astro';
 ---
 <Base page="tarifs" titre="Tarifs — POINT PRO GUINÉE" description="Nos produits et nos prix, issus du catalogue officiel POINT PRO.">
-<section class="page-hero"><picture><source type="image/avif" srcset="/images/parpaings-sur-palette.avif"><img class="hero-bg" src="/images/parpaings-sur-palette.jpg" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
+<section class="page-hero"><picture><source type="image/avif" srcset="/images/parpaings-sur-palette-640.avif 640w, /images/parpaings-sur-palette.avif 720w" sizes="(max-width: 700px) 50vw, 100vw"><img class="hero-bg" src="/images/parpaings-sur-palette.jpg" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
 <nav class="crumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Tarifs</span></nav>
 <h1>Tarifs</h1>
 <p>Nos produits et nos prix, issus du catalogue officiel POINT PRO.</p>
@@ -14,8 +14,8 @@ import Camion from '../components/Camion.astro';
 <div class="section-head reveal"><div class="eyebrow">Catalogue officiel · Édition chantier</div><h2>Nos produits et nos tarifs.</h2><p>Prix en francs guinéens (GNF), à l’unité sauf mention contraire. Pour une grande quantité ou une livraison, demandez-nous un devis. <a class="inline-link" href="#calculateur">Combien de briques pour votre mur ?</a></p></div>
 <div class="reveal"><Tarifs client:load /></div>
 <div class="cat-docs reveal">
-<a class="cat-doc" href="/images/catalogue-blocs-hourdis.jpg" target="_blank" rel="noopener"><picture><source type="image/avif" srcset="/images/catalogue-blocs-hourdis.avif"><img src="/images/catalogue-blocs-hourdis.jpg" alt="Page du catalogue : blocs, agglomérés et hourdis"></picture><span><b>Catalogue blocs et hourdis</b><span>Voir la page complète ↗</span></span></a>
-<a class="cat-doc" href="/images/catalogue-paves-bordures.jpg" target="_blank" rel="noopener"><picture><source type="image/avif" srcset="/images/catalogue-paves-bordures.avif"><img src="/images/catalogue-paves-bordures.jpg" alt="Page du catalogue : pavés et bordures"></picture><span><b>Catalogue pavés et bordures</b><span>Voir la page complète ↗</span></span></a>
+<a class="cat-doc" href="/images/catalogue-blocs-hourdis.jpg" target="_blank" rel="noopener"><picture><source type="image/avif" srcset="/images/catalogue-blocs-hourdis-320.avif 320w, /images/catalogue-blocs-hourdis.avif 768w" sizes="96px"><img src="/images/catalogue-blocs-hourdis.jpg" alt="Page du catalogue : blocs, agglomérés et hourdis" loading="lazy"></picture><span><b>Catalogue blocs et hourdis</b><span>Voir la page complète ↗</span></span></a>
+<a class="cat-doc" href="/images/catalogue-paves-bordures.jpg" target="_blank" rel="noopener"><picture><source type="image/avif" srcset="/images/catalogue-paves-bordures-320.avif 320w, /images/catalogue-paves-bordures.avif 1046w" sizes="96px"><img src="/images/catalogue-paves-bordures.jpg" alt="Page du catalogue : pavés et bordures" loading="lazy"></picture><span><b>Catalogue pavés et bordures</b><span>Voir la page complète ↗</span></span></a>
 </div>
 <p class="note">Tarifs repris du catalogue officiel POINT PRO publié sur notre page Facebook. Ils peuvent évoluer : confirmez le prix au moment de votre commande.</p>
 </div></section>
@@ -24,5 +24,5 @@ import Camion from '../components/Camion.astro';
 <div class="reveal"><Calculateur client:load /></div>
 <p class="note">Briques de 40 × 20 cm de face, joints de 1 cm. Estimation hors livraison et hors mortier, à confirmer par notre équipe.</p>
 </div></section>
-<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques.avif"><img src="/images/briques.png" alt="" aria-hidden="true"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
+<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques-640.avif 640w, /images/briques.avif 922w" sizes="(max-width: 700px) 50vw, 100vw"><img src="/images/briques.png" alt="" aria-hidden="true" loading="lazy"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
 </Base>

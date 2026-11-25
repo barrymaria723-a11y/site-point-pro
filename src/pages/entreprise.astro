@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Camion from '../components/Camion.astro';
 ---
 <Base page="entreprise" titre="L’entreprise — POINT PRO GUINÉE" description="Basée à Koliagbé, POINT PRO GUINÉE accompagne vos chantiers à Conakry ainsi que dans toutes les villes environnantes, en vous proposant des solutions adaptées à vos besoins.">
-<section class="page-hero"><picture><source type="image/avif" srcset="/images/briques.avif"><img class="hero-bg" src="/images/briques.png" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
+<section class="page-hero"><picture><source type="image/avif" srcset="/images/briques-640.avif 640w, /images/briques.avif 922w" sizes="(max-width: 700px) 50vw, 100vw"><img class="hero-bg" src="/images/briques.png" alt="" aria-hidden="true"></picture><div class="page-hero-inner">
 <nav class="crumbs" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">L’entreprise</span></nav>
 <h1>L’entreprise</h1>
 <p>Basée à Koliagbé, POINT PRO GUINÉE accompagne vos chantiers à Conakry ainsi que dans toutes les villes environnantes, en vous proposant des solutions adaptées à vos besoins.</p>
@@ -30,5 +30,5 @@ import Camion from '../components/Camion.astro';
 <div class="stat"><strong class="count" data-to="1">1</strong><span>Partenaire pour vos chantiers</span></div>
 </div>
 </div></section>
-<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques.avif"><img src="/images/briques.png" alt="" aria-hidden="true"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
+<section class="quote-band"><Camion /><picture><source type="image/avif" srcset="/images/briques-640.avif 640w, /images/briques.avif 922w" sizes="(max-width: 700px) 50vw, 100vw"><img src="/images/briques.png" alt="" aria-hidden="true" loading="lazy"></picture><div class="wrap"><div><h2>Votre prochain chantier commence ici.</h2><p>Parlez-nous de votre besoin. Nous vous répondrons rapidement.</p></div><a class="btn" href="/contact.html">Demander un devis ↗</a></div></section>
 </Base>
