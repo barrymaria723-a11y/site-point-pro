@@ -2,8 +2,9 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import vue from '@astrojs/vue';
 
-// Vercel donne l'adresse publique du projet au moment de la compilation (domaine personnalisé compris)
-const ADRESSE = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || 'localhost:4321'}`;
+// L'hébergeur donne l'adresse publique à la compilation (domaine personnalisé compris) : Netlify avec URL, Vercel avec l'autre
+const { NETLIFY, URL: URL_NETLIFY, VERCEL_PROJECT_PRODUCTION_URL } = process.env;
+const ADRESSE = NETLIFY && URL_NETLIFY ? URL_NETLIFY : `https://${VERCEL_PROJECT_PRODUCTION_URL || 'localhost:4321'}`;
 
 export default defineConfig({
   site: ADRESSE,
