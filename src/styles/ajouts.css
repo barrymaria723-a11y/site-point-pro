@@ -122,3 +122,8 @@ astro-island{display:contents}
 
 /* Contraste des étiquettes de location */
 .equip-tag{color:#F2A65A}
+
+/* Bannière d'accueil : texte remonté */
+.hero{align-items:flex-start;padding-top:44px;min-height:600px}
+.hero h1{margin:14px 0}
+@media(max-width:560px){.hero{padding-top:36px;min-height:0}}
