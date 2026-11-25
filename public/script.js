@@ -13,8 +13,8 @@
   // Machine à écrire (accueil)
   var typed = $('typed');
   if (typed) {
-    var words = ['vos parpaings', 'vos engins', 'votre ciment', 'vos ambitions'], wi = 0, ci = 0, del = false, pause = 0;
-    if (reduce) typed.textContent = words[3];
+    var words = ['vos parpaings', 'vos engins', 'votre ciment', 'vos agrégats', 'vos ambitions'], wi = 0, ci = 0, del = false, pause = 0;
+    if (reduce) typed.textContent = words[words.length - 1];
     else setInterval(function(){
       if (pause) { pause--; return; }
       var w = words[wi];
@@ -27,7 +27,7 @@
   // Bandeau défilant
   var track = $('track');
   if (track) {
-    var mq = ['BRIQUETERIE', 'MATÉRIAUX', 'TRANSPORT', 'LOCATION D’ENGINS', 'CONAKRY', 'MAMOU', 'KINDIA', 'ON CONSTRUIT VOS AMBITIONS'];
+    var mq = ['BRIQUETERIE', 'MATÉRIAUX', 'AGRÉGATS', 'TRANSPORT', 'LOCATION D’ENGINS', 'CONAKRY', 'MAMOU', 'KINDIA', 'ON CONSTRUIT VOS AMBITIONS'];
     track.innerHTML = mq.concat(mq).map(function(x){ return '<span>' + x + '</span>'; }).join('');
   }
 
