@@ -164,3 +164,12 @@ astro-island{display:contents}
 
 /* Contact : formulaire sur toute la largeur */
 #contact .contact-solo{max-width:none}
+
+/* ===== Téléphones : pas de zoom automatique =====
+   Sur iPhone, Safari zoome sur tout champ dont le texte fait moins de 16 px.
+   Seuls les écrans tactiles sont concernés : l'affichage sur ordinateur ne change pas. */
+@media (hover: none) and (pointer: coarse) {
+  input:not([type=radio]):not([type=checkbox]), select, textarea { font-size: 16px !important; }
+}
+/* Pas de zoom par double tape sur les boutons et les liens */
+a, button, label, select, input, textarea, .btn, .tab, .add, summary { touch-action: manipulation; }
